@@ -24,7 +24,7 @@ public class DBManager
         {
             try
             {
-                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres 2", "postgres", "root");
+                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "root");
             }
             catch (SQLException e)
             { throw new RuntimeException(e); }
