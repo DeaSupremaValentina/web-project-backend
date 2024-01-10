@@ -14,10 +14,9 @@ public class Ricetta {
 
     private List<Recensione> recensioni;
 
-    private List<Commenti> commenti;
+    private List<Commento> commenti;
 
-    public Ricetta() {
-    }
+    public Ricetta() {}
 
     public Ricetta(int codice, String nome, String categoria, String descrizione, String ingredienti, String procedimento, String tempoPreparazione, String numeroPersone, String difficolta, String costo, String linkYoutube, String linkSpotify, String pathImmagine) {
         this.codice = codice;
@@ -44,11 +43,11 @@ public class Ricetta {
         this.recensioni = recensioni;
     }
 
-    public List<Commenti> getCommenti() {
+    public List<Commento> getCommenti() {
         return commenti;
     }
 
-    public void setCommenti(List<Commenti> commenti) {
+    public void setCommenti(List<Commento> commenti) {
         this.commenti = commenti;
     }
 
