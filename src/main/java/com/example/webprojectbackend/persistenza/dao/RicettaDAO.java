@@ -16,7 +16,10 @@ public interface RicettaDAO {
     public Ricetta findByPrimaryKey(int id);
 
     public List<Ricetta> findByUsername(String username); //ricette create da un utente
-    public void saveOrUpdate(Ricetta recipe);
+    public void save(Ricetta recipe);
+
+    public boolean update(Ricetta recipe);
+    public void newProposal(Ricetta recipe);
     public void delete(Ricetta recipe);
 }
 

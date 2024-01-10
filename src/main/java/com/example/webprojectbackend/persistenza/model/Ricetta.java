@@ -5,7 +5,7 @@ import java.util.List;
 public class Ricetta {
 
     private int codice;
-    private String nomeRicetta, categoria, descrizione, ingredienti, procedimento;
+    private String nomeRicetta, categoria, descrizione, ingredienti, procedimento, autore, tag1, tag2;
     private String tempoPreparazione, numeroPersone, difficolta, costo;
 
     private String linkYoutube, linkSpotify;
@@ -18,7 +18,7 @@ public class Ricetta {
 
     public Ricetta() {}
 
-    public Ricetta(int codice, String nome, String categoria, String descrizione, String ingredienti, String procedimento, String tempoPreparazione, String numeroPersone, String difficolta, String costo, String linkYoutube, String linkSpotify, String pathImmagine) {
+    public Ricetta(int codice, String nome, String categoria, String descrizione, String ingredienti, String procedimento, String tempoPreparazione, String numeroPersone, String difficolta, String costo, String linkYoutube, String linkSpotify, String pathImmagine, String autore, String tag1, String tag2) {
         this.codice = codice;
         this.nomeRicetta = nome;
         this.categoria = categoria;
@@ -32,6 +32,9 @@ public class Ricetta {
         this.linkYoutube = linkYoutube;
         this.linkSpotify = linkSpotify;
         this.pathImmagine = pathImmagine;
+        this.autore = autore;
+        this.tag1 = tag1;
+        this.tag2 = tag2;
     }
 
 
@@ -154,6 +157,16 @@ public class Ricetta {
     public void setPathImmagine(String pathImmagine) {
         this.pathImmagine = pathImmagine;
     }
+
+    public String getAutore() { return autore; }
+    public void setAutore(String autore) { this.autore = autore; }
+
+    public String getTag1() { return tag1; }
+    public void setTag1(String tag1) { this.tag1 = tag1; }
+
+    public String getTag2() { return tag2; }
+
+    public void setTag2(String tag2) { this.tag2 = tag2; }
 
 
 }
