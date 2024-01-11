@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ValutazioneDAO {
 
-    public void saveOrUpdate(Recensione valutazione);
+    public void save(Recensione valutazione);
     public void delete(Recensione valutazione);
 
     public void deleteValutazioniRicetta(int codiceRicetta);
