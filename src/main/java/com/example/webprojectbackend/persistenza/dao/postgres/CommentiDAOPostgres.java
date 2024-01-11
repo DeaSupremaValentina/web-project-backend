@@ -29,8 +29,8 @@ public class CommentiDAOPostgres implements CommentoDAO {
                 Commento commento = new Commento();
                 commento.setCodiceRicetta(rs.getInt("ricetta"));
                 commento.setUsername(rs.getString("username"));
-                commento.setTesto(rs.getString("testo"));
-                commento.setData(rs.getDate("data"));
+                commento.setContenuto(rs.getString("contenuto"));
+                commento.setCodiceCommento(rs.getInt("codice"));
                 commenti.add(commento);
             }
         }
@@ -38,7 +38,7 @@ public class CommentiDAOPostgres implements CommentoDAO {
             throw new RuntimeException(e);
         }
 
-
+    return commenti;
     }
 
     @Override
