@@ -1,11 +1,10 @@
-package com.example.webprojectbackend.persistenza.dao;
+package com.example.webprojectbackend.persistenza;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class IDBroker {
-
 
     public static int getRicetteId(Connection connection) {
         //tabella per le ricette
