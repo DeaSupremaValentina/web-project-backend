@@ -308,7 +308,78 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     @Override
     public void newProposal(Ricetta recipe) {
-    //veduamo ja
+    String query = "insert into daapprovare (nomericetta, categoria, descrizione, ingredienti, procedimento, tempi, difficolta, npersone, costo, publisher, immagine, link_spotify, link_youtube, tag1, tag2) values (?,? ?, ?, ?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, recipe.getNomeRicetta());
+            st.setString(2, recipe.getCategoria());
+            st.setString(3, recipe.getDescrizione());
+            st.setString(4, recipe.getIngredienti());
+            st.setString(5, recipe.getProcedimento());
+            st.setString(6, recipe.getTempoPreparazione());
+            st.setString(7, recipe.getDifficolta());
+            st.setString(8, recipe.getNumeroPersone());
+            st.setString(9, recipe.getCosto());
+            st.setString(10, recipe.getAutore());
+            st.setString(11, recipe.getPathImmagine());
+            st.setString(12, recipe.getLinkSpotify());
+            st.setString(13, recipe.getLinkYoutube());
+            st.setString(14, recipe.getTag1());
+            st.setString(15, recipe.getTag2());
+            st.executeUpdate();
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteProposal(Ricetta recipe) {
+        String query = "delete from daapprovare where codice = ?";
+        try {
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setInt(1, recipe.getCodice());
+            st.executeUpdate();
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<Ricetta> findAllProposals() {
+        List<Ricetta> ricette = new ArrayList<Ricetta>();
+        String query = "select * from daapprovare";
+        try
+        {
+            PreparedStatement st = conn.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next())
+            {
+                Ricetta ricetta = new Ricetta();
+                ricetta.setCodice(rs.getInt("codice"));
+                ricetta.setNomeRicetta(rs.getString("nomericetta"));
+                ricetta.setCategoria(rs.getString("categoria"));
+                ricetta.setDescrizione(rs.getString("descrizione"));
+                ricetta.setIngredienti(rs.getString("ingredienti"));
+                ricetta.setProcedimento(rs.getString("procedimento"));
+                ricetta.setTempoPreparazione(rs.getString("tempi"));
+                ricetta.setDifficolta(rs.getString("difficolta"));
+                ricetta.setNumeroPersone(rs.getString("npersone"));
+                ricetta.setCosto(rs.getString("costo"));
+                ricetta.setAutore(rs.getString("publisher"));
+                ricetta.setPathImmagine(rs.getString("immagine"));
+                ricetta.setLinkSpotify(rs.getString("link_spotify"));
+                ricetta.setLinkYoutube(rs.getString("link_youtube"));
+                ricetta.setTag1(rs.getString("tag1"));
+                ricetta.setTag2(rs.getString("tag2"));
+                ricette.add(ricetta);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return ricette;
     }
 
     @Override

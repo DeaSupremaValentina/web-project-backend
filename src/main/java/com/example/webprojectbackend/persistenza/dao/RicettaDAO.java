@@ -19,8 +19,13 @@ public interface RicettaDAO {
     public void save(Ricetta recipe);
 
     public boolean update(Ricetta recipe);
-    public void newProposal(Ricetta recipe);
     public void delete(Ricetta recipe);
+
+    //query per la tabella delle proposte da approvare
+    public void newProposal(Ricetta recipe);
+    public List<Ricetta> findAllProposals();
+    public void deleteProposal(Ricetta recipe);
+
 }
 
 
