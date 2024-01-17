@@ -76,6 +76,7 @@ public class UtentiDAOPostgres implements UtenteDAO {
             throw new RuntimeException(e);
         }
 
+        return utente;
     }
 
     @Override
@@ -102,6 +103,7 @@ public class UtentiDAOPostgres implements UtenteDAO {
         }
 
 
+        return utente;
     }
 
     @Override
