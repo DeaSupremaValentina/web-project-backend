@@ -17,6 +17,7 @@ public class ServiziRest {
     @PostMapping("/utente/login")
     public String login(@RequestBody Utente utente){
         if(utenteDAO.getUtenteByEmail(utente.getEmail())==null){
+            DBManager.getInstance().getUtenteDAO().save(utente);
             return "Utente nuovo quindi va salvato nel db";
         }
         else return "Utente già esistente, non deve essere salvato nel db";
@@ -27,6 +28,6 @@ public class ServiziRest {
     @PostMapping("/utente/propostaRicetta")
     public String propostaRicetta(@RequestBody Ricetta ricetta){
         DBManager.getInstance().getRicettaDAO().newProposal(ricetta);
-        return "new proposal: OK";
+        return "new proposal: sent to administrators";
     }
 }

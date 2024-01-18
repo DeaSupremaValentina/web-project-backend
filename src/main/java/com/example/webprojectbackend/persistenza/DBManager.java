@@ -2,9 +2,11 @@ package com.example.webprojectbackend.persistenza;
 
 import com.example.webprojectbackend.persistenza.dao.CommentoDAO;
 import com.example.webprojectbackend.persistenza.dao.RicettaDAO;
+import com.example.webprojectbackend.persistenza.dao.UtenteDAO;
 import com.example.webprojectbackend.persistenza.dao.ValutazioneDAO;
 import com.example.webprojectbackend.persistenza.dao.postgres.CommentiDAOPostgres;
 import com.example.webprojectbackend.persistenza.dao.postgres.RicetteDAOPostgres;
+import com.example.webprojectbackend.persistenza.dao.postgres.UtentiDAOPostgres;
 import com.example.webprojectbackend.persistenza.dao.postgres.ValutazioniDAOPostgres;
 
 import java.sql.Connection;
@@ -54,4 +56,10 @@ public class DBManager
     {
         return new ValutazioniDAOPostgres(getConnection());
     }
+
+    public UtenteDAO getUtenteDAO()
+    {
+        return new UtentiDAOPostgres(getConnection());
+    }
+
 }

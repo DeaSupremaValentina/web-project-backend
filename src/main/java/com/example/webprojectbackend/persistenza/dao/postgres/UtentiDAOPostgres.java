@@ -10,6 +10,12 @@ import java.sql.ResultSet;
 public class UtentiDAOPostgres implements UtenteDAO {
 
     Connection conn;
+
+    public UtentiDAOPostgres(Connection conn) {
+        this.conn = conn;
+    }
+
+    public UtentiDAOPostgres(){}
     @Override
     public void save(Utente utente) {
         String query = "INSERT INTO utenti (username, nome, email, tipo, pathImage) VALUES (?, ?, ?, ?, ?, ?)";
