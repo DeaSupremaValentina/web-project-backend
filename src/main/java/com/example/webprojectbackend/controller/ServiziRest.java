@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ServiziRest {
 
-    @Autowired
+    @Autowired  // autowired serve per iniettare la dipendenza di utenteDAO in ServiziRest
     private UtenteDAO utenteDAO;
     @PostMapping("/utente/login")
     public String login(@RequestBody Utente utente){
