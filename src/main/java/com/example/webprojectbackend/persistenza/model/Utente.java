@@ -18,7 +18,7 @@ public class Utente {
 
     }
 
-    public String getUserCode() {
+    public static String getUserCode() {
         return userCode;
     }
 

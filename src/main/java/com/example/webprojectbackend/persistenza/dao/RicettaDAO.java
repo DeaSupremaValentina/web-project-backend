@@ -26,6 +26,12 @@ public interface RicettaDAO {
     public List<Ricetta> findAllProposals();
     public void deleteProposal(Ricetta recipe);
 
+    public void saveNewRecipe(int codiceRicetta);
+
+    public void unsaveRecipe(int codiceRicetta);
+
+
+
 }
 
 
