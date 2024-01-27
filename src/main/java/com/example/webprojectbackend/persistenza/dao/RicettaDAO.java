@@ -6,29 +6,35 @@ import java.util.List;
 
 public interface RicettaDAO {
 
-    public List<Ricetta> findAll();
+    public List<Ricetta> findAll(); //trova tutte le ricette
 
-    public List<Ricetta> findByNome(String nome);
+    public List<Ricetta> findByNome(String nome); //ricette con nome che contiene la stringa
 
-    public List<Ricetta> findByCategoria(String categoria);
+    public List<Ricetta> findByCategoria(String categoria); //ricette con categoria che contiene la stringa
 
-    public List<Ricetta> findByTag(String tag); //tag 1 or tag 2 indifferente
-    public Ricetta findByPrimaryKey(int id);
+    public List<Ricetta> findByTag(String tag); //tag 1 or tag 2 indifferente, ricette taggate con tag
+    public Ricetta findByPrimaryKey(int id); //trova la ricetta specifica con codice id
 
     public List<Ricetta> findByUsername(String username); //ricette create da un utente
-    public void save(Ricetta recipe);
+    public void save(Ricetta recipe); //crea una ricetta
 
-    public boolean update(Ricetta recipe);
-    public void delete(Ricetta recipe);
+    public boolean update(Ricetta recipe); //modifica una ricetta
+    public void delete(Ricetta recipe); //elimina una ricetta
 
-    //query per la tabella delle proposte da approvare
-    public void newProposal(Ricetta recipe);
-    public List<Ricetta> findAllProposals();
-    public void deleteProposal(Ricetta recipe);
 
-    public void saveNewRecipe(int codiceRicetta);
+    //query per la tabella delle proposte da approvare:
+    public void newProposal(Ricetta recipe); //crea una proposta
+    public List<Ricetta> findAllProposals(); //trova tutte le proposte
+    public void deleteProposal(Ricetta recipe); //elimina una proposta
 
-    public void unsaveRecipe(int codiceRicetta);
+    public void saveNewRecipe(int codiceRicetta); //salva una ricetta
+
+    public void unsaveRecipe(int codiceRicetta); //rimuove una ricetta salvata
+
+    //un moderatore può approvare o rifiutare una proposta. vedrà tutte le proposte quindi all'apertura della pagina dedicata
+    //si dovrà fare una query che restituisca tutte le proposte, poi quando ne approva una si fa una query che salva la proposta
+    // nella tabella ricette, ed una query per eliminare la proposta dalla tabella delle proposte
+    //sostanzialmente si fa una sorta di "spostamento"
 
 
 

@@ -13,7 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBManager
+public class DBManager  //classe singleton per la connessione al database
 {
     private static DBManager instance = null;
     private DBManager(){}
@@ -41,7 +41,7 @@ public class DBManager
         return connection;
     }
 
-    //aggiunta Dao
+    //aggiunta Dao, per le tabelle nel database (oggetti corrispondenti)
     public RicettaDAO getRicettaDAO()
     {
         return new RicetteDAOPostgres(getConnection());
