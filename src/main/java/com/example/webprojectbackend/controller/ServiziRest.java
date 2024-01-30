@@ -5,9 +5,12 @@ import com.example.webprojectbackend.persistenza.dao.UtenteDAO;
 import com.example.webprojectbackend.persistenza.model.Ricetta;
 import com.example.webprojectbackend.persistenza.model.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class ServiziRest {
@@ -29,5 +32,10 @@ public class ServiziRest {
     public String propostaRicetta(@RequestBody Ricetta ricetta){
         DBManager.getInstance().getRicettaDAO().newProposal(ricetta);
         return "new proposal: sent to administrators";
+    }
+
+    @GetMapping("/tutteLeRicette")
+    public List<Ricetta> getRicette(){
+        return DBManager.getInstance().getRicettaDAO().findAll();
     }
 }
