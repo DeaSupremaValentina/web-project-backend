@@ -6,13 +6,11 @@ public class Utente {
     private String tipo; //admin o user
 
     private String email, nome;
-    private String pathImmagine;
     public Utente() {}
 
-    public Utente(String userCode, String tipo, String email, String nome, String pathImmagine) {
+    public Utente(String userCode, String tipo, String email, String nome) {
         this.userCode = userCode;
         this.tipo = tipo;
-        this.pathImmagine = pathImmagine;
         this.email = email;
         this.nome = nome;
 
@@ -34,13 +32,6 @@ public class Utente {
         this.tipo = tipo;
     }
 
-    public String getPathImmagine() {
-        return pathImmagine;
-    }
-
-    public void setPathImmagine(String pathImmagine) {
-        this.pathImmagine = pathImmagine;
-    }
 
     public String getEmail() {
         return email;
