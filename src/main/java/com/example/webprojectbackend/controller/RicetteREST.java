@@ -36,7 +36,7 @@ public class RicetteREST {
     }
 
     //per tutte le ricette
-    @GetMapping("/tutteLeRicette")
+    @GetMapping("/TutteLeRicette")
     public List<Ricetta> getAllRicette(){
         System.out.println("Sono in getAllRicette");
         return DBManager.getInstance().getRicettaDAO().findAll();
