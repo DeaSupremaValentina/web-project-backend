@@ -16,8 +16,6 @@
 	<description>web-project-backend</description>
 	<properties>
 		<java.version>17</java.version>
-		<!-- <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>-->
-		<!--<thymeleaf-layout-dialect.version>2.2.0</thymeleaf-layout-dialect.version>-->
 	</properties>
 
 	<dependencies>
@@ -53,6 +51,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

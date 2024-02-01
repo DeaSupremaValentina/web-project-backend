@@ -15,7 +15,7 @@ import com.example.webprojectbackend.persistenza.model.Utente;
 import com.google.gson.Gson;
 
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+public class LogInServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
