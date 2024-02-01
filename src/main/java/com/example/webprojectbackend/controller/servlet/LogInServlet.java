@@ -10,17 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
+import com.example.webprojectbackend.persistenza.dao.UtenteDAO;
 import com.example.webprojectbackend.persistenza.model.Utente;
 
 import com.google.gson.Gson;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @WebServlet("/login")
 public class LogInServlet extends HttpServlet {
+    @Autowired
+    private UtenteDAO utenteDAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         // Ottieni i dati dell'utente dalla richiesta
-        String idToken = request.getParameter("idToken");
         String utenteJson = request.getParameter("utente");
 
         try {
@@ -28,12 +31,14 @@ public class LogInServlet extends HttpServlet {
             Gson gson = new Gson();
             Utente utente = gson.fromJson(utenteJson, Utente.class);
 
-            // Simula la creazione di una sessione (puoi personalizzare questa parte)
+
             HttpSession session = request.getSession(true);
             session.setAttribute("userId", utente.getUserCode());
 
-            // Puoi aggiungere qui la logica di autenticazione, ad esempio verificando le credenziali utente,
-            // interagendo con un database per verificare l'utente, ecc.
+
+            if(utenteDAO.getUtenteByEmail(utente.getEmail()) == null){
+                utenteDAO.save(utente);
+            }
 
             // Invia una risposta di successo al client
             response.setStatus(HttpServletResponse.SC_OK);

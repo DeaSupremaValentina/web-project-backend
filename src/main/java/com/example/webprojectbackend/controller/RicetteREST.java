@@ -42,19 +42,19 @@ public class RicetteREST {
     }
 
     //Post per aggiungere nuove ricette
-    @PostMapping
+    @PostMapping("/aggiungi")
     public void addRicetta(@RequestBody Ricetta ricetta){
         DBManager.getInstance().getRicettaDAO().save(ricetta);
     }
 
     //Post per modificare ricette
-    @PostMapping
+    @PostMapping("/aggiorna")
     public void updateRicetta(@RequestBody Ricetta ricetta){
         DBManager.getInstance().getRicettaDAO().update(ricetta);
     }
 
     //Post per eliminare ricette
-    @PostMapping
+    @PostMapping("/elimina")
     public void deleteRicetta(@RequestBody Ricetta ricetta){
         DBManager.getInstance().getRicettaDAO().delete(ricetta);
     }

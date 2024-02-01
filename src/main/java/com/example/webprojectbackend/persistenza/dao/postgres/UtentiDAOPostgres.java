@@ -18,32 +18,17 @@ public class UtentiDAOPostgres implements UtenteDAO {
     public UtentiDAOPostgres(){}
     @Override
     public void save(Utente utente) {
-        String query = "INSERT INTO utenti (username, nome, email, tipo, pathImage) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO utenti (username, nome, email, tipo) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, utente.getUserCode());
             st.setString(2, utente.getNome());
             st.setString(3, utente.getEmail());
             st.setString(4, utente.getTipo());
-            //st.setString(5, utente.getPathImmagine());
             st.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public void updateImage(Utente utente, String newImage) {
-        String query = "UPDATE utenti SET pathImage = ? WHERE username = ?";
-        try {
-            PreparedStatement st = conn.prepareStatement(query);
-            st.setString(1, newImage);
-            st.setString(2, utente.getUserCode());
-            st.executeUpdate();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
     }
 
     @Override
@@ -75,7 +60,6 @@ public class UtentiDAOPostgres implements UtenteDAO {
                 utente.setNome(rs.getString("nome"));
                 utente.setEmail(rs.getString("email"));
                 utente.setTipo(rs.getString("tipo"));
-                //utente.setPathImmagine(rs.getString("pathImage"));
             }
         }
         catch (Exception e) {
@@ -101,7 +85,6 @@ public class UtentiDAOPostgres implements UtenteDAO {
                 utente.setNome(rs.getString("nome"));
                 utente.setEmail(rs.getString("email"));
                 utente.setTipo(rs.getString("tipo"));
-                //utente.setPathImmagine(rs.getString("pathImage"));
             }
         }
         catch (Exception e) {

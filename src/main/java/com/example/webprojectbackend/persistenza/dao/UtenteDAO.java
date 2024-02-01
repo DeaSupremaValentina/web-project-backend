@@ -8,8 +8,6 @@ public interface UtenteDAO {
 
     public void save(Utente utente);
 
-    public void updateImage(Utente utente, String newImage);
-
     public void delete (Utente utente);
 
     public Utente getUtenteByUsername(String username);

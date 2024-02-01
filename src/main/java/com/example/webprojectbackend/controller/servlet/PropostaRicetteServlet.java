@@ -13,11 +13,11 @@ import java.sql.Connection;
 //questa servlet gestisce la proposta di una ricetta da parte di un utente
 @WebServlet("/PropostaRicetta")
 public class PropostaRicetteServlet extends HttpServlet {
-    Connection conn = DBManager.getInstance().getConnection();
+    //Connection conn = DBManager.getInstance().getConnection();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
-        String nomeRicetta = req.getParameter("nomeRicetta");
+        /*String nomeRicetta = req.getParameter("nomeRicetta");
         String categoria = req.getParameter("categoria");
         String descrizione = req.getParameter("descrizione");
         String ingredienti = req.getParameter("ingredienti");
@@ -45,7 +45,7 @@ public class PropostaRicetteServlet extends HttpServlet {
         Ricetta ricetta = new Ricetta(codice, nomeRicetta, categoria, descrizione, ingredienti, procedimento, tempoPreparazione, numeroPersone, difficolta, costo, linkYoutube, linkSpotify, pathImmagine, autore, tag1, tag2);
         DBManager.getInstance().getRicettaDAO().newProposal(ricetta);
 
-        
+        */
     }
 }
 
