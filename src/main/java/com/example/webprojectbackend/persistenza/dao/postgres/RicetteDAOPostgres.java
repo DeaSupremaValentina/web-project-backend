@@ -433,4 +433,40 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     }
 
+
+    public List<Ricetta> findAllLazy() throws SQLException {
+        List<Ricetta> ricette = new ArrayList<Ricetta>();
+        try
+        {
+            String query = "SELECT * FROM ricetta";
+            PreparedStatement st = conn.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next())
+            {
+                Ricetta ricetta = new RicetteProxy(conn);
+                ricetta.setCodice(rs.getInt("codice"));
+                ricetta.setNomeRicetta(rs.getString("nomericetta"));
+                ricetta.setCategoria(rs.getString("categoria"));
+                ricetta.setDescrizione(rs.getString("descrizione"));
+                ricetta.setIngredienti(rs.getString("listaingredienti"));
+                ricetta.setProcedimento(rs.getString("procedimento"));
+                ricetta.setTempoPreparazione(rs.getString("tempi"));
+                ricetta.setDifficolta(rs.getString("difficolta"));
+                ricetta.setNumeroPersone(rs.getString("npersone"));
+                ricetta.setCosto(rs.getString("costo"));
+                ricetta.setAutore(rs.getString("publisher"));
+                ricetta.setPathImmagine(rs.getString("immagine"));
+                ricetta.setLinkSpotify(rs.getString("link_spotify"));
+                ricetta.setLinkYoutube(rs.getString("link_youtube"));
+                ricetta.setTag1(rs.getString("tag1"));
+                ricetta.setTag2(rs.getString("tag2"));
+                ricette.add(ricetta);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ricette;
+        }
+
 }

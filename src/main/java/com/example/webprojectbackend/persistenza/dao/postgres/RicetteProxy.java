@@ -5,10 +5,7 @@ import com.example.webprojectbackend.persistenza.dao.RicettaDAO;
 import com.example.webprojectbackend.persistenza.model.Commento;
 import com.example.webprojectbackend.persistenza.model.Ricetta;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,4 +51,6 @@ public class RicetteProxy extends Ricetta
         else
             { return super.getCommenti(); }
     }
+
+
 }
