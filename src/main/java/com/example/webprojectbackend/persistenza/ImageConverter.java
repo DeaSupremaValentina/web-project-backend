@@ -1,4 +1,4 @@
-package com.example.webprojectbackend.persistenza.model;
+package com.example.webprojectbackend.persistenza;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
