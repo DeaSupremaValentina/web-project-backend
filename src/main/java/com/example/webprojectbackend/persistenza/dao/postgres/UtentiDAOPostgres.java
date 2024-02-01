@@ -18,7 +18,7 @@ public class UtentiDAOPostgres implements UtenteDAO {
     public UtentiDAOPostgres(){}
     @Override
     public void save(Utente utente) {
-        String query = "INSERT INTO utenti (username, nome, email, tipo) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO user (username, nome, email, tipo) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, utente.getUserCode());
