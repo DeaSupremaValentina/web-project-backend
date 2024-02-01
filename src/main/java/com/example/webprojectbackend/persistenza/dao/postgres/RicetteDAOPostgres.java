@@ -21,7 +21,6 @@ public class RicetteDAOPostgres implements RicettaDAO
     public List<Ricetta> findAll() {
         List<Ricetta> ricette = new ArrayList<Ricetta>();
         String query = "select * from ricette";
-        System.out.println("sono qui");
         try
         {
             PreparedStatement st = conn.prepareStatement(query);
@@ -44,7 +43,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setAutore(rs.getString("publisher"));
                 ricetta.setPathImmagine(rs.getString("immagine"));
                 ricetta.setLinkSpotify(rs.getString("link_spotify"));
-                ricetta.setLinkYoutube(rs.getString("link_youtube"));
+                ricetta.setLinkYoutube(rs.getString("link youtube"));
                 ricetta.setTag1(rs.getString("tag1"));
                 ricetta.setTag2(rs.getString("tag2"));
                 ricette.add(ricetta);
