@@ -16,8 +16,8 @@
 	<description>web-project-backend</description>
 	<properties>
 		<java.version>17</java.version>
-		<thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
-		<thymeleaf-layout-dialect.version>2.2.0</thymeleaf-layout-dialect.version>
+		<!-- <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>-->
+		<!--<thymeleaf-layout-dialect.version>2.2.0</thymeleaf-layout-dialect.version>-->
 	</properties>
 
 	<dependencies>

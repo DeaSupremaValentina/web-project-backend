@@ -25,7 +25,7 @@ public class UtentiDAOPostgres implements UtenteDAO {
             st.setString(2, utente.getNome());
             st.setString(3, utente.getEmail());
             st.setString(4, utente.getTipo());
-            st.setString(5, utente.getPathImmagine());
+            //st.setString(5, utente.getPathImmagine());
             st.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -75,7 +75,7 @@ public class UtentiDAOPostgres implements UtenteDAO {
                 utente.setNome(rs.getString("nome"));
                 utente.setEmail(rs.getString("email"));
                 utente.setTipo(rs.getString("tipo"));
-                utente.setPathImmagine(rs.getString("pathImage"));
+                //utente.setPathImmagine(rs.getString("pathImage"));
             }
         }
         catch (Exception e) {
@@ -101,7 +101,7 @@ public class UtentiDAOPostgres implements UtenteDAO {
                 utente.setNome(rs.getString("nome"));
                 utente.setEmail(rs.getString("email"));
                 utente.setTipo(rs.getString("tipo"));
-                utente.setPathImmagine(rs.getString("pathImage"));
+                //utente.setPathImmagine(rs.getString("pathImage"));
             }
         }
         catch (Exception e) {
