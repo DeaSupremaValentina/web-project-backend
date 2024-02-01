@@ -20,7 +20,8 @@ public class RicetteDAOPostgres implements RicettaDAO
     @Override
     public List<Ricetta> findAll() {
         List<Ricetta> ricette = new ArrayList<Ricetta>();
-        String query = "select * from ricetta";
+        String query = "select * from ricette";
+        System.out.println("sono qui");
         try
         {
             PreparedStatement st = conn.prepareStatement(query);
@@ -31,9 +32,10 @@ public class RicetteDAOPostgres implements RicettaDAO
                 Ricetta ricetta = new Ricetta();
                 ricetta.setCodice(rs.getInt("codice"));
                 ricetta.setNomeRicetta(rs.getString("nomericetta"));
+                System.out.println(rs.getString("nomericetta"));
                 ricetta.setCategoria(rs.getString("categoria"));
                 ricetta.setDescrizione(rs.getString("descrizione"));
-                ricetta.setIngredienti(rs.getString("ingredienti"));
+                ricetta.setIngredienti(rs.getString("listaingredienti"));
                 ricetta.setProcedimento(rs.getString("procedimento"));
                 ricetta.setTempoPreparazione(rs.getString("tempi"));
                 ricetta.setDifficolta(rs.getString("difficolta"));
@@ -57,7 +59,7 @@ public class RicetteDAOPostgres implements RicettaDAO
     public List<Ricetta> findByNome(String nome) {
         Ricetta ricetta = null;
         List<Ricetta> ricette = new ArrayList<Ricetta>();
-        String query = "select * from ricetta where nomericetta = ?";
+        String query = "select * from ricette where nomericetta = ?";
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, nome);
@@ -70,7 +72,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setNomeRicetta(rs.getString("nomericetta"));
                 ricetta.setCategoria(rs.getString("categoria"));
                 ricetta.setDescrizione(rs.getString("descrizione"));
-                ricetta.setIngredienti(rs.getString("ingredienti"));
+                ricetta.setIngredienti(rs.getString("listaingredienti"));
                 ricetta.setProcedimento(rs.getString("procedimento"));
                 ricetta.setTempoPreparazione(rs.getString("tempi"));
                 ricetta.setDifficolta(rs.getString("difficolta"));
@@ -95,7 +97,7 @@ public class RicetteDAOPostgres implements RicettaDAO
     public List<Ricetta> findByCategoria(String categoria) {
         Ricetta ricetta = null;
         List<Ricetta> ricette = new ArrayList<Ricetta>();
-        String query = "select * from ricetta where categoria = ?";
+        String query = "select * from ricette where categoria = ?";
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, categoria);
@@ -108,7 +110,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setNomeRicetta(rs.getString("nomericetta"));
                 ricetta.setCategoria(rs.getString("categoria"));
                 ricetta.setDescrizione(rs.getString("descrizione"));
-                ricetta.setIngredienti(rs.getString("ingredienti"));
+                ricetta.setIngredienti(rs.getString("listaingredienti"));
                 ricetta.setProcedimento(rs.getString("procedimento"));
                 ricetta.setTempoPreparazione(rs.getString("tempi"));
                 ricetta.setDifficolta(rs.getString("difficolta"));
@@ -133,7 +135,7 @@ public class RicetteDAOPostgres implements RicettaDAO
     public List<Ricetta> findByTag(String tag) {
         Ricetta ricetta = null;
         List<Ricetta> ricette = new ArrayList<Ricetta>();
-        String query = "select * from ricetta where tag1 = ? or tag2 = ?";
+        String query = "select * from ricette where tag1 = ? or tag2 = ?";
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, tag);
@@ -147,7 +149,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setNomeRicetta(rs.getString("nomericetta"));
                 ricetta.setCategoria(rs.getString("categoria"));
                 ricetta.setDescrizione(rs.getString("descrizione"));
-                ricetta.setIngredienti(rs.getString("ingredienti"));
+                ricetta.setIngredienti(rs.getString("listaingredienti"));
                 ricetta.setProcedimento(rs.getString("procedimento"));
                 ricetta.setTempoPreparazione(rs.getString("tempi"));
                 ricetta.setDifficolta(rs.getString("difficolta"));
@@ -173,7 +175,7 @@ public class RicetteDAOPostgres implements RicettaDAO
     @Override
     public Ricetta findByPrimaryKey(int id) {
         Ricetta ricetta = null;
-        String query = "select * from ricetta where codice = ?";
+        String query = "select * from ricette where codice = ?";
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, id);
@@ -186,7 +188,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setNomeRicetta(rs.getString("nomericetta"));
                 ricetta.setCategoria(rs.getString("categoria"));
                 ricetta.setDescrizione(rs.getString("descrizione"));
-                ricetta.setIngredienti(rs.getString("ingredienti"));
+                ricetta.setIngredienti(rs.getString("listaingredienti"));
                 ricetta.setProcedimento(rs.getString("procedimento"));
                 ricetta.setTempoPreparazione(rs.getString("tempi"));
                 ricetta.setDifficolta(rs.getString("difficolta"));
@@ -211,7 +213,7 @@ public class RicetteDAOPostgres implements RicettaDAO
     public List<Ricetta> findByUsername(String username) {
         Ricetta ricetta = null;
         List<Ricetta> ricette = new ArrayList<Ricetta>();
-        String query = "select * from ricetta where publisher = ?";
+        String query = "select * from ricette where publisher = ?";
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, username);
@@ -224,7 +226,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setNomeRicetta(rs.getString("nomericetta"));
                 ricetta.setCategoria(rs.getString("categoria"));
                 ricetta.setDescrizione(rs.getString("descrizione"));
-                ricetta.setIngredienti(rs.getString("ingredienti"));
+                ricetta.setIngredienti(rs.getString("listaingredienti"));
                 ricetta.setProcedimento(rs.getString("procedimento"));
                 ricetta.setTempoPreparazione(rs.getString("tempi"));
                 ricetta.setDifficolta(rs.getString("difficolta"));
@@ -247,7 +249,7 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     @Override
     public void save(Ricetta recipe) {
-            String query = "insert into ricetta (nomericetta, categoria, descrizione, ingredienti, procedimento, tempi, difficolta, npersone, costo, publisher, immagine, link_spotify, link_youtube, tag1, tag2) values (?,? ?, ?, ?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "insert into ricette (nomericetta, categoria, descrizione, listaingredienti, procedimento, tempi, difficolta, npersone, costo, publisher, immagine, link_spotify, link_youtube, tag1, tag2) values (?,? ?, ?, ?,?,?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement st = conn.prepareStatement(query);
                 st.setString(1, recipe.getNomeRicetta());
@@ -274,7 +276,7 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     @Override
     public boolean update(Ricetta recipe) {
-        String query = "update ricetta set nomericetta = ?, categoria = ?, descrizione = ?, ingredienti = ?, procedimento = ?, tempi = ?, difficolta = ?, npersone = ?, costo = ?, publisher = ?, immagine = ?, link_spotify = ?, link_youtube = ?, tag1 = ?, tag2 = ? where codice = ?";
+        String query = "update ricette set nomericetta = ?, categoria = ?, descrizione = ?, listaingredienti = ?, procedimento = ?, tempi = ?, difficolta = ?, npersone = ?, costo = ?, publisher = ?, immagine = ?, link_spotify = ?, link_youtube = ?, tag1 = ?, tag2 = ? where codice = ?";
         int t = -666; //numero casuale per settare t ad un valore che non causi sviste
         try {
             PreparedStatement st = conn.prepareStatement(query);
@@ -309,7 +311,7 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     @Override
     public void newProposal(Ricetta recipe) {
-    String query = "insert into daapprovare (nomericetta, categoria, descrizione, ingredienti, procedimento, tempi, difficolta, npersone, costo, publisher, immagine, link_spotify, link_youtube, tag1, tag2) values (?,? ?, ?, ?,?,?,?,?,?,?,?,?,?,?)";
+    String query = "insert into daapprovare (nomericetta, categoria, descrizione, listaingredienti, procedimento, tempi, difficolta, npersone, costo, publisher, immagine, linkspotify, linkyoutube, tag1, tag2) values (?,? ?, ?, ?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, recipe.getNomeRicetta());
@@ -364,7 +366,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setNomeRicetta(rs.getString("nomericetta"));
                 ricetta.setCategoria(rs.getString("categoria"));
                 ricetta.setDescrizione(rs.getString("descrizione"));
-                ricetta.setIngredienti(rs.getString("ingredienti"));
+                ricetta.setIngredienti(rs.getString("listaingredienti"));
                 ricetta.setProcedimento(rs.getString("procedimento"));
                 ricetta.setTempoPreparazione(rs.getString("tempi"));
                 ricetta.setDifficolta(rs.getString("difficolta"));
@@ -387,7 +389,7 @@ public class RicetteDAOPostgres implements RicettaDAO
     @Override
     public void delete(Ricetta recipe)
     {
-        String query = "delete from ricetta where codice = ?";
+        String query = "delete from ricette where codice = ?";
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, recipe.getCodice());
