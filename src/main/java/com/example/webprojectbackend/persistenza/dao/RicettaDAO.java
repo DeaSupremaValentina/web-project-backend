@@ -1,5 +1,6 @@
 package com.example.webprojectbackend.persistenza.dao;
 
+import com.example.webprojectbackend.persistenza.model.Commento;
 import com.example.webprojectbackend.persistenza.model.Ricetta;
 
 import java.util.List;
@@ -35,6 +36,9 @@ public interface RicettaDAO {
     //si dovrà fare una query che restituisca tutte le proposte, poi quando ne approva una si fa una query che salva la proposta
     // nella tabella ricette, ed una query per eliminare la proposta dalla tabella delle proposte
     //sostanzialmente si fa una sorta di "spostamento"
+
+
+    public List<Ricetta> findAllLazy(); //ricerca lazy
 
 
 

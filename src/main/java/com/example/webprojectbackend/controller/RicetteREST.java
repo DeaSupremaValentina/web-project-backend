@@ -37,8 +37,11 @@ public class RicetteREST {
 
     //per tutte le ricette
     @GetMapping("/tutteLeRicette")
-    public List<Ricetta> getAllRicette(){
+    public List<Ricetta> getAllRicette()
+    {
+        System.out.println("nell'endpoint");
         return DBManager.getInstance().getRicettaDAO().findAll();
+        //return DBManager.getInstance().getRicettaDAO().findAllLazy();
     }
 
     //Post per aggiungere nuove ricette
