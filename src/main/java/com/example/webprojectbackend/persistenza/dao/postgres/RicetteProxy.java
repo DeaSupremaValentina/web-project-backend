@@ -1,13 +1,13 @@
 package com.example.webprojectbackend.persistenza.dao.postgres;
 
-import com.example.webprojectbackend.persistenza.dao.CommentoDAO;
-import com.example.webprojectbackend.persistenza.dao.RicettaDAO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
 import com.example.webprojectbackend.persistenza.model.Commento;
 import com.example.webprojectbackend.persistenza.model.Ricetta;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RicetteProxy extends Ricetta
 {
