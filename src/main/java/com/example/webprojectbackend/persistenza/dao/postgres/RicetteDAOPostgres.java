@@ -43,7 +43,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setAutore(rs.getString("publisher"));
                 ricetta.setPathImmagine(rs.getString("immagine"));
                 ricetta.setLinkSpotify(rs.getString("link_spotify"));
-                ricetta.setLinkYoutube(rs.getString("link_youtube"));
+                ricetta.setLinkYoutube(rs.getString("link youtube"));
                 ricetta.setTag1(rs.getString("tag1"));
                 ricetta.setTag2(rs.getString("tag2"));
                 ricette.add(ricetta);
@@ -80,7 +80,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setAutore(rs.getString("publisher"));
                 ricetta.setPathImmagine(rs.getString("immagine"));
                 ricetta.setLinkSpotify(rs.getString("link_spotify"));
-                ricetta.setLinkYoutube(rs.getString("link_youtube"));
+                ricetta.setLinkYoutube(rs.getString("link youtube"));
                 ricetta.setTag1(rs.getString("tag1"));
                 ricetta.setTag2(rs.getString("tag2"));
                 ricette.add(ricetta);
@@ -118,7 +118,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setAutore(rs.getString("publisher"));
                 ricetta.setPathImmagine(rs.getString("immagine"));
                 ricetta.setLinkSpotify(rs.getString("link_spotify"));
-                ricetta.setLinkYoutube(rs.getString("link_youtube"));
+                ricetta.setLinkYoutube(rs.getString("link youtube"));
                 ricetta.setTag1(rs.getString("tag1"));
                 ricetta.setTag2(rs.getString("tag2"));
                 ricette.add(ricetta);
@@ -157,7 +157,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setAutore(rs.getString("publisher"));
                 ricetta.setPathImmagine(rs.getString("immagine"));
                 ricetta.setLinkSpotify(rs.getString("link_spotify"));
-                ricetta.setLinkYoutube(rs.getString("link_youtube"));
+                ricetta.setLinkYoutube(rs.getString("link youtube"));
                 ricetta.setTag1(rs.getString("tag1"));
                 ricetta.setTag2(rs.getString("tag2"));
                 ricette.add(ricetta);
@@ -196,7 +196,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setAutore(rs.getString("publisher"));
                 ricetta.setPathImmagine(rs.getString("immagine"));
                 ricetta.setLinkSpotify(rs.getString("link_spotify"));
-                ricetta.setLinkYoutube(rs.getString("link_youtube"));
+                ricetta.setLinkYoutube(rs.getString("link youtube"));
                 ricetta.setTag1(rs.getString("tag1"));
                 ricetta.setTag2(rs.getString("tag2"));
             }
@@ -234,7 +234,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setAutore(rs.getString("publisher"));
                 ricetta.setPathImmagine(rs.getString("immagine"));
                 ricetta.setLinkSpotify(rs.getString("link_spotify"));
-                ricetta.setLinkYoutube(rs.getString("link_youtube"));
+                ricetta.setLinkYoutube(rs.getString("link youtube"));
                 ricetta.setTag1(rs.getString("tag1"));
                 ricetta.setTag2(rs.getString("tag2"));
                 ricette.add(ricetta);
@@ -275,7 +275,7 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     @Override
     public boolean update(Ricetta recipe) {
-        String query = "update ricette set nomericetta = ?, categoria = ?, descrizione = ?, listaingredienti = ?, procedimento = ?, tempi = ?, difficolta = ?, npersone = ?, costo = ?, publisher = ?, immagine = ?, link_spotify = ?, link_youtube = ?, tag1 = ?, tag2 = ? where codice = ?";
+        String query = "update ricette set nomericetta = ?, categoria = ?, descrizione = ?, listaingredienti = ?, procedimento = ?, tempi = ?, difficolta = ?, npersone = ?, costo = ?, publisher = ?, immagine = ?, link_spotify = ?, link youtube = ?, tag1 = ?, tag2 = ? where codice = ?";
         int t = -666; //numero casuale per settare t ad un valore che non causi sviste
         try {
             PreparedStatement st = conn.prepareStatement(query);
@@ -374,7 +374,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setAutore(rs.getString("publisher"));
                 ricetta.setPathImmagine(rs.getString("immagine"));
                 ricetta.setLinkSpotify(rs.getString("link_spotify"));
-                ricetta.setLinkYoutube(rs.getString("link_youtube"));
+                ricetta.setLinkYoutube(rs.getString("link youtube"));
                 ricetta.setTag1(rs.getString("tag1"));
                 ricetta.setTag2(rs.getString("tag2"));
                 ricette.add(ricetta);
@@ -460,7 +460,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setAutore(rs.getString("publisher"));
                 ricetta.setPathImmagine(rs.getString("immagine"));
                 ricetta.setLinkSpotify(rs.getString("link_spotify"));
-                ricetta.setLinkYoutube(rs.getString("link_youtube"));
+                ricetta.setLinkYoutube(rs.getString("link youtube"));
                 ricetta.setTag1(rs.getString("tag1"));
                 ricetta.setTag2(rs.getString("tag2"));
                 ricette.add(ricetta);
