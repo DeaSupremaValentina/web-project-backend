@@ -25,7 +25,7 @@ public class RicetteProxy extends Ricetta
 
         if (super.getCommenti() == null)
         {
-            String query = "SELECT * FROM commenti c, ricetta r WHERE r.codice = ? AND c.ricetta = r.codice";
+            String query = "SELECT * FROM commenti c, ricette r WHERE r.codice = ? AND c.ricetta = r.codice";
             try
             {
                 PreparedStatement st = conn.prepareStatement(query);
