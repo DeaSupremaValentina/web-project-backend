@@ -40,8 +40,8 @@ public class RicetteREST {
     public List<Ricetta> getAllRicette()
     {
         System.out.println("nell'endpoint");
-        return DBManager.getInstance().getRicettaDAO().findAll();
-        //return DBManager.getInstance().getRicettaDAO().findAllLazy();
+        // return DBManager.getInstance().getRicettaDAO().findAll();
+        return DBManager.getInstance().getRicettaDAO().findAllLazy();
     }
 
     //Post per aggiungere nuove ricette
