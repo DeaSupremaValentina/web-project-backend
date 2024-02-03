@@ -41,7 +41,7 @@ public interface RicettaDAO {
     public List<Ricetta> findAllLazy(); //ricerca lazy
 
 
-
+    public List<Ricetta> genericSearch(String cercata);
 }
 
 

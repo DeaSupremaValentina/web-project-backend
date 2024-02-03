@@ -24,7 +24,7 @@ public class RicetteREST {
         return DBManager.getInstance().getRicettaDAO().findByNome(nome);
     }
 
-    //per le ricette trovate tramite categoria
+    //per le ricette trovate tramite categoria, es. "Primi" o "Secondi" ecc.
     @GetMapping("/ricette_categoria/{categoria}")
     public List<Ricetta> getRicettaByCategoria(String categoria){
         return DBManager.getInstance().getRicettaDAO().findByCategoria(categoria);
@@ -63,5 +63,10 @@ public class RicetteREST {
         DBManager.getInstance().getRicettaDAO().delete(ricetta);
     }
 
+    //get per cercare ricette tramite stringa inserita nella barra di ricerca
+    @GetMapping
+    public List<Ricetta> searchRicetta(String cercata){
+        return DBManager.getInstance().getRicettaDAO().genericSearch(cercata);
+    }
 
 }
