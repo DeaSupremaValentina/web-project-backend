@@ -20,6 +20,7 @@ public class ContattiDAOPostgres implements ContattoDAO {
 
     @Override
     public Contatto findAll() {
+        System.out.println("la query sta per partire");
         Contatto contatto = new Contatto();
         List<String> stringhe = new ArrayList<>();
         String query = "SELECT * FROM contatti";
@@ -28,6 +29,7 @@ public class ContattiDAOPostgres implements ContattoDAO {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
+                System.out.println(rs.getString("valore"));
                 stringhe.add(rs.getString("valore"));
             }
         } catch (SQLException e) {

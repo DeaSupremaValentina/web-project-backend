@@ -14,10 +14,11 @@ import java.io.IOException;
 public class ContattiServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("sono nella servlet contatti");
         Contatto contatto = DBManager.getInstance().getContattoDAO().findAll();
         req.setAttribute("contatto", contatto);
         req.getRequestDispatcher("/chi-siamo.component.html").forward(req, resp);
-        
+
     }
 
 }
