@@ -69,4 +69,10 @@ public class RicetteREST {
         return DBManager.getInstance().getRicettaDAO().genericSearch(cercata);
     }
 
+    @GetMapping("/tutteLeRicetteProposte")
+    public List<Ricetta> getAllRicetteProposte()
+    {
+        System.out.println("nell'endpoint");
+        return DBManager.getInstance().getRicettaDAO().findAllProposals();
+    }
 }
