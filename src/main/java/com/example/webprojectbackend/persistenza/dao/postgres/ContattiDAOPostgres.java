@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,14 +53,26 @@ public class ContattiDAOPostgres implements ContattoDAO {
 
     }
 
-    @Override
-    public void update(Contatto contatto) {
-
-    }
 
     @Override
     public Contatto findByFormato(String formato) {
-        return null;
+        Contatto contatto = null;
+        String query = "SELECT * FROM contatti WHERE formato = ?";
+        try
+        {
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, formato);
+            ResultSet rs = st.executeQuery();
+            if (rs.next())
+            {
+                contatto.setFormato(rs.getString(1));
+                contatto.setValore(rs.getString(2));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return contatto;
     }
 
     @Override
