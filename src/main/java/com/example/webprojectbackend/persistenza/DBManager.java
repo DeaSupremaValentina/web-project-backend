@@ -1,13 +1,7 @@
 package com.example.webprojectbackend.persistenza;
 
-import com.example.webprojectbackend.persistenza.dao.CommentoDAO;
-import com.example.webprojectbackend.persistenza.dao.RicettaDAO;
-import com.example.webprojectbackend.persistenza.dao.UtenteDAO;
-import com.example.webprojectbackend.persistenza.dao.ValutazioneDAO;
-import com.example.webprojectbackend.persistenza.dao.postgres.CommentiDAOPostgres;
-import com.example.webprojectbackend.persistenza.dao.postgres.RicetteDAOPostgres;
-import com.example.webprojectbackend.persistenza.dao.postgres.UtentiDAOPostgres;
-import com.example.webprojectbackend.persistenza.dao.postgres.ValutazioniDAOPostgres;
+import com.example.webprojectbackend.persistenza.dao.*;
+import com.example.webprojectbackend.persistenza.dao.postgres.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -62,4 +56,8 @@ public class DBManager  //classe singleton per la connessione al database
         return new UtentiDAOPostgres(getConnection());
     }
 
+    public ContattoDAO getContattoDAO()
+    {
+        return new ContattiDAOPostgres(getConnection());
+    }
 }
