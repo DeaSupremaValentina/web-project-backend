@@ -2,6 +2,7 @@ package com.example.webprojectbackend.persistenza.dao;
 
 import com.example.webprojectbackend.persistenza.model.Commento;
 import com.example.webprojectbackend.persistenza.model.Ricetta;
+import com.example.webprojectbackend.persistenza.model.Utente;
 
 import java.util.List;
 
@@ -42,6 +43,8 @@ public interface RicettaDAO {
 
 
     public List<Ricetta> genericSearch(String cercata);
+
+    public List<Ricetta> findSavedRecipes(Utente user);
 }
 
 

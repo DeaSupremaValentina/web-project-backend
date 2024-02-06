@@ -440,6 +440,44 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     }
 
+    public List<Ricetta> findSavedRecipes (Utente user)
+    {
+        List<Ricetta> ricette = new ArrayList<>();
+        String query = "SELECT * FROM ricettesalvate WHERE utente = ?";
+        try
+        {
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, user.getUserCode());
+            ResultSet rs = st.executeQuery();
+            while (rs.next())
+            {
+                Ricetta ricetta = new RicetteProxy(conn);
+                ricetta.setCodice(rs.getInt("codice"));
+                ricetta.setNomeRicetta(rs.getString("nomericetta"));
+                System.out.println(rs.getString("nomericetta") + "ciaoooo");
+                ricetta.setCategoria(rs.getString("categoria"));
+                ricetta.setDescrizione(rs.getString("descrizione"));
+                ricetta.setIngredienti(rs.getString("listaingredienti"));
+                ricetta.setProcedimento(rs.getString("procedimento"));
+                ricetta.setTempoPreparazione(rs.getString("tempi"));
+                ricetta.setDifficolta(rs.getString("difficolta"));
+                ricetta.setNumeroPersone(rs.getString("npersone"));
+                ricetta.setCosto(rs.getString("costo"));
+                ricetta.setAutore(rs.getString("publisher"));
+                ricetta.setPathImmagine(rs.getString("immagine"));
+                ricetta.setLinkSpotify(rs.getString("link_spotify"));
+                ricetta.setLinkYoutube(rs.getString("link_youtube"));
+                ricetta.setTag1(rs.getString("tag1"));
+                ricetta.setTag2(rs.getString("tag2"));
+                ricette.add(ricetta);
+            }
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return ricette;
+    }
+
 
     public List<Ricetta> findAllLazy() {
         List<Ricetta> ricette = new ArrayList<Ricetta>();
