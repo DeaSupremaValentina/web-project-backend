@@ -1,15 +1,14 @@
 package com.example.webprojectbackend.persistenza.dao.postgres;
 
-import com.example.webprojectbackend.persistenza.dao.ContattoDAO;
-import com.example.webprojectbackend.persistenza.model.Contatto;
-import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.webprojectbackend.persistenza.dao.ContattoDAO;
+import com.example.webprojectbackend.persistenza.model.Contatto;
 
 public class ContattiDAOPostgres implements ContattoDAO {
     Connection conn;
@@ -19,8 +18,7 @@ public class ContattiDAOPostgres implements ContattoDAO {
     }
 
     @Override
-    public Contatto findAll() {
-        System.out.println("la query sta per partire");
+    public Contatto geContatto() {
         Contatto contatto = new Contatto();
         List<String> stringhe = new ArrayList<>();
         String query = "SELECT * FROM contatti";
