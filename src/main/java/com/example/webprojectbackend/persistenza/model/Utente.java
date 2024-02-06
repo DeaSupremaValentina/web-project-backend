@@ -1,7 +1,7 @@
 package com.example.webprojectbackend.persistenza.model;
 
 public class Utente {
-    //se ne doveva occupare Firebase
+    private static Utente instance = null;
     private static String userCode; //codice univoco dell'utente, lo dà Firebase
     private String tipo; //admin o user
 
@@ -16,7 +16,14 @@ public class Utente {
 
     }
 
-    public static String getUserCode() {
+    public static Utente getInstance() {
+        if (instance == null) {
+            instance = new Utente();
+        }
+        return instance;
+    }
+
+    public String getUserCode() {
         return userCode;
     }
 

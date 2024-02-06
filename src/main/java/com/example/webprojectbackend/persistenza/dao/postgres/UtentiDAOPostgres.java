@@ -18,22 +18,25 @@ public class UtentiDAOPostgres implements UtenteDAO {
     public UtentiDAOPostgres(){}
     @Override
     public void save(Utente utente) {
-        String query = "INSERT INTO user (username, nome, email, tipo) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO utente (username, nome, mail, tipo) VALUES (?, ?, ?, ?)";
+        System.out.println("nella query");
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, utente.getUserCode());
             st.setString(2, utente.getNome());
             st.setString(3, utente.getEmail());
             st.setString(4, utente.getTipo());
+            System.out.println("ciao utente" + utente.getUserCode() + utente.getNome());
             st.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        System.out.println("dopo try");
     }
 
     @Override
     public void delete(Utente utente) {
-        String query = "DELETE FROM user WHERE username = ?";
+        String query = "DELETE FROM utente WHERE username = ?";
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, utente.getUserCode());
@@ -46,7 +49,7 @@ public class UtentiDAOPostgres implements UtenteDAO {
 
     @Override
     public Utente getUtenteByUsername(String username) {
-        String query = "SELECT * FROM user WHERE username = ?";
+        String query = "SELECT * FROM utente WHERE username = ?";
         Utente utente = null;
         try
         {
@@ -58,7 +61,7 @@ public class UtentiDAOPostgres implements UtenteDAO {
                 utente = new Utente();
                 utente.setUserCode(rs.getString("username"));
                 utente.setNome(rs.getString("nome"));
-                utente.setEmail(rs.getString("email"));
+                utente.setEmail(rs.getString("mail"));
                 utente.setTipo(rs.getString("tipo"));
             }
         }
@@ -71,8 +74,8 @@ public class UtentiDAOPostgres implements UtenteDAO {
 
     @Override
     public Utente getUtenteByEmail(String email) {
-        String query = "SELECT * FROM user WHERE email = ?";
-        Utente utente = null;
+        String query = "SELECT * FROM utente WHERE mail = ?";
+        Utente utente = Utente.getInstance();
         try
         {
             PreparedStatement st = conn.prepareStatement(query);
@@ -80,10 +83,9 @@ public class UtentiDAOPostgres implements UtenteDAO {
             ResultSet rs = st.executeQuery();
             if(rs.next())
             {
-                utente = new Utente();
                 utente.setUserCode(rs.getString("username"));
                 utente.setNome(rs.getString("nome"));
-                utente.setEmail(rs.getString("email"));
+                utente.setEmail(rs.getString("mail"));
                 utente.setTipo(rs.getString("tipo"));
             }
         }
@@ -97,7 +99,7 @@ public class UtentiDAOPostgres implements UtenteDAO {
 
     @Override
     public void setUtenteAdmin(String username) {
-        String query = "UPDATE user SET tipo = 'admin' WHERE username = ?";
+        String query = "UPDATE utente SET tipo = 'admin' WHERE username = ?";
         try
         {
             PreparedStatement st = conn.prepareStatement(query);
@@ -112,7 +114,7 @@ public class UtentiDAOPostgres implements UtenteDAO {
 
     @Override
     public void setUtenteUser(String username) {
-        String query = "UPDATE user SET tipo = 'user' WHERE username = ?";
+        String query = "UPDATE utente SET tipo = 'user' WHERE username = ?";
         try
         {
             PreparedStatement st = conn.prepareStatement(query);

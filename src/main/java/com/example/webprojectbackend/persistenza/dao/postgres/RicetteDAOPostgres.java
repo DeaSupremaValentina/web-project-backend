@@ -414,7 +414,7 @@ public class RicetteDAOPostgres implements RicettaDAO
         {
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, codiceRicetta);
-            st.setString(2, Utente.getUserCode());
+            st.setString(2, Utente.getInstance().getUserCode());
             st.executeUpdate();
         }
         catch (Exception e) {
@@ -431,7 +431,7 @@ public class RicetteDAOPostgres implements RicettaDAO
         {
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, codiceRicetta);
-            st.setString(2, Utente.getUserCode());
+            st.setString(2, Utente.getInstance().getUserCode());
             st.executeUpdate();
         }
         catch (Exception e) {
