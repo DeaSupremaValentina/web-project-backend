@@ -1,7 +1,9 @@
 package com.example.webprojectbackend.persistenza.dao.postgres;
 
+import com.example.webprojectbackend.persistenza.DBManager;
 import com.example.webprojectbackend.persistenza.ImageConverter;
 import com.example.webprojectbackend.persistenza.dao.RicettaDAO;
+import com.example.webprojectbackend.persistenza.model.Commento;
 import com.example.webprojectbackend.persistenza.model.Ricetta;
 import com.example.webprojectbackend.persistenza.model.Utente;
 
@@ -200,6 +202,12 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setLinkYoutube(rs.getString("link_youtube"));
                 ricetta.setTag1(rs.getString("tag1"));
                 ricetta.setTag2(rs.getString("tag2"));
+                List<Commento> commenti = DBManager.getInstance().getCommentoDAO().findByCodiceRicetta(rs.getInt("codice"));
+                for(int i=0; i<commenti.size(); i++)
+                {
+                    System.out.println(commenti.get(i).getContenuto());
+                }
+                ricetta.setCommenti(commenti);
             }
         }
         catch (Exception e) {
