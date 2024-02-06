@@ -26,7 +26,7 @@ public class RicetteREST {
 
     //per le ricette trovate tramite categoria, es. "Primi" o "Secondi" ecc.
     @GetMapping("/ricette_categoria/{categoria}")
-    public List<Ricetta> getRicettaByCategoria(String categoria){
+    public List<Ricetta> getRicettaByCategoria(@PathVariable String categoria){
         return DBManager.getInstance().getRicettaDAO().findByCategoria(categoria);
     }
 
