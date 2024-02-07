@@ -34,9 +34,10 @@ public class LoginREST {
         return utente.getTipo();
     }
 
-   /* public Utente getUtente(){
-        return utente;
-    } */
+   @PostMapping("/logout")
+    public void logout(){
+        utente = null;
+    }
 
 }
 
