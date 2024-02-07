@@ -75,4 +75,34 @@ public class RicetteREST {
         System.out.println("nell'endpoint");
         return DBManager.getInstance().getRicettaDAO().findAllProposals();
     }
+
+    @PostMapping("/salvaRicetta") //l'utente può così salvare una ricetta tra i preferiti
+    public void saveRicetta(@RequestBody int codiceRicetta){
+        DBManager.getInstance().getRicettaDAO().saveNewRecipe(codiceRicetta);
+    }
+
+    @PostMapping("/rimuoviRicetta") //l'utente può così rimuovere una ricetta tra i preferiti
+    public void unsaveRicetta(@RequestBody int codiceRicetta){
+        DBManager.getInstance().getRicettaDAO().unsaveRecipe(codiceRicetta);
+    }
+
+
+    //      per salvare una proposta di ricetta
+    @PostMapping("/salvaProposta")
+    public void saveProposta(@RequestBody Ricetta ricetta){
+        DBManager.getInstance().getRicettaDAO().newProposal(ricetta);
+    }
+
+    //      per eliminare una proposta di ricetta
+    @PostMapping("/eliminaProposta")
+    public void deleteProposta(@RequestBody Ricetta ricetta){
+        DBManager.getInstance().getRicettaDAO().deleteProposal(ricetta);
+    }
+
+    //      per approvare una proposta di ricetta
+    @PostMapping("/approvaProposta")
+    public void approveProposta(@RequestBody Ricetta ricetta){
+        DBManager.getInstance().getRicettaDAO().save(ricetta);
+        DBManager.getInstance().getRicettaDAO().deleteProposal(ricetta);
+    }
 }
