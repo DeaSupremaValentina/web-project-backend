@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Objects;
+
 @RestController
 public class LoginREST {
     Utente utente = Utente.getInstance();
@@ -18,8 +21,17 @@ public class LoginREST {
         if(DBManager.getInstance().getUtenteDAO().getUtenteByEmail(utente.getEmail()) != null){
             DBManager.getInstance().getUtenteDAO().save(utente);
        }
+        if(Objects.equals(utente.getEmail(), "valentinaricioppo@gmail.com")){
+            utente.setTipo("admin");
+        }
+
         System.out.println("è andato il login");
 
+    }
+
+    @GetMapping("/tipoUtente")
+    public String getTipoUtente(){
+        return utente.getTipo();
     }
 
    /* public Utente getUtente(){

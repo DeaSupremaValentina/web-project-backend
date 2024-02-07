@@ -2,6 +2,7 @@ package com.example.webprojectbackend.controller;
 
 import com.example.webprojectbackend.persistenza.DBManager;
 import com.example.webprojectbackend.persistenza.model.Ricetta;
+import com.example.webprojectbackend.persistenza.model.Utente;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -84,6 +85,11 @@ public class RicetteREST {
     @PostMapping("/rimuoviRicetta") //l'utente può così rimuovere una ricetta tra i preferiti
     public void unsaveRicetta(@RequestBody int codiceRicetta){
         DBManager.getInstance().getRicettaDAO().unsaveRecipe(codiceRicetta);
+    }
+
+    @GetMapping("/ricetteSalvate")
+    public List<Ricetta> getRicetteSalvate(){
+        return DBManager.getInstance().getRicettaDAO().findSavedRecipes(Utente.getInstance());
     }
 
 
