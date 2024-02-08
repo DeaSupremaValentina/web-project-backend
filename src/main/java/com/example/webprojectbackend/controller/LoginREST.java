@@ -21,7 +21,9 @@ public class LoginREST {
 
         if(DBManager.getInstance().getUtenteDAO().getUtenteByEmail(utente.getEmail()) == null){
             DBManager.getInstance().getUtenteDAO().save(utente);
-       }
+       }else{
+            this.utente.setUserCode(DBManager.getInstance().getUtenteDAO().getUtenteByEmail(utente.getEmail()).getUserCode());
+        }
         if(Objects.equals(utente.getEmail(), "valentinaricioppo@gmail.com")){
             utente.setTipo("admin");
         }
