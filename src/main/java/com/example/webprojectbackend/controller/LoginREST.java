@@ -38,9 +38,11 @@ public class LoginREST {
     }
 
    @PostMapping("/logout")
-    public void logout(){
-        utente = null;
-    }
+    public void logout()
+   {
+         utente = null;
+         Utente.getInstance().logout();
+   }
 
 }
 
