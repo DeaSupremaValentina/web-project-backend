@@ -67,7 +67,7 @@ public class RicetteREST {
     }
 
     //get per cercare ricette tramite stringa inserita nella barra di ricerca
-    @GetMapping
+    @GetMapping("ricette/{cercata}")
     public List<Ricetta> searchRicetta(String cercata){
         return DBManager.getInstance().getRicettaDAO().genericSearch(cercata);
     }

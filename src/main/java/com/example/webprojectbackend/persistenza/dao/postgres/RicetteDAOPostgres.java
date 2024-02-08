@@ -62,6 +62,7 @@ public class RicetteDAOPostgres implements RicettaDAO
         Ricetta ricetta = null;
         List<Ricetta> ricette = new ArrayList<Ricetta>();
         String query = "select * from ricette where nomericetta = ?";
+        System.out.println(nome);
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, nome);
