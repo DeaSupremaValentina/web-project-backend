@@ -25,9 +25,7 @@ public class LoginREST {
         }else{
             this.utente.setUserCode(DBManager.getInstance().getUtenteDAO().getUtenteByEmail(utente.getEmail()).getUserCode());
         }
-        if(Objects.equals(utente.getEmail(), "valentinaricioppo@gmail.com")){
-            utente.setTipo("admin");
-        }
+
 
         System.out.println("è andato il login");
 
@@ -35,7 +33,7 @@ public class LoginREST {
 
     @GetMapping("/tipoUtente")
     public String getTipoUtente(){
-        return utente.getTipo();
+        return DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente.getUserCode()).getTipo();
     }
 
    @PostMapping("/logout")
