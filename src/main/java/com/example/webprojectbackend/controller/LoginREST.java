@@ -18,7 +18,7 @@ public class LoginREST {
     public void login(@RequestBody Utente utente){
        this.utente = utente;
         System.out.println("la rest per login");
-        if(DBManager.getInstance().getUtenteDAO().getUtenteByEmail(utente.getEmail()) != null){
+        if(DBManager.getInstance().getUtenteDAO().getUtenteByEmail(utente.getEmail()) == null){
             DBManager.getInstance().getUtenteDAO().save(utente);
        }
         if(Objects.equals(utente.getEmail(), "valentinaricioppo@gmail.com")){
