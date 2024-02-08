@@ -23,7 +23,7 @@ public class RicetteREST {
 
     //per le ricette trovate tramite nome
     @GetMapping("/ricette_nome/{nome}")
-    public List<Ricetta> getRicettaByNome(String nome){
+    public List<Ricetta> getRicettaByNome(@PathVariable String nome){
         return DBManager.getInstance().getRicettaDAO().findByNome(nome);
     }
 
@@ -67,8 +67,8 @@ public class RicetteREST {
     }
 
     //get per cercare ricette tramite stringa inserita nella barra di ricerca
-    @GetMapping("ricette/{cercata}")
-    public List<Ricetta> searchRicetta(String cercata){
+    @GetMapping("ricette_cercate/{cercata}")
+    public List<Ricetta> searchRicetta(@PathVariable String cercata){
         return DBManager.getInstance().getRicettaDAO().genericSearch(cercata);
     }
 
