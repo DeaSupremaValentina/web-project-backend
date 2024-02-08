@@ -57,4 +57,12 @@ public class Utente {
         this.nome = nome;
     }
 
+    public void logout(){
+        instance = null;
+        this.userCode = null;
+        this.tipo = null;
+        this.email = null;
+        this.nome = null;
+    }
+
 }
