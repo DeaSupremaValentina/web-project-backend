@@ -23,5 +23,17 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedOrigins("*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE","HEAD","OPTIONS") // Specifica i metodi HTTP consentiti
                 .allowedHeaders("*");
+        registry.addMapping("/salvaRicetta")
+                .allowedOrigins("*")
+                .allowedMethods("GET", "POST", "PUT", "DELETE","HEAD","OPTIONS") // Specifica i metodi HTTP consentiti
+                .allowedHeaders("*");
+        registry.addMapping("/rimuoviRicetta")
+                .allowedOrigins("*")
+                .allowedMethods("GET", "POST", "PUT", "DELETE","HEAD","OPTIONS") // Specifica i metodi HTTP consentiti
+                .allowedHeaders("*");
+        registry.addMapping("/ricetteSalvate")
+                .allowedOrigins("*")
+                .allowedMethods("GET", "POST", "PUT", "DELETE","HEAD","OPTIONS") // Specifica i metodi HTTP consentiti
+                .allowedHeaders("*");
 }
 }

@@ -448,21 +448,17 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     }
 
-    public List<Ricetta> findSavedRecipes (Utente user)
-    {
+    public List<Ricetta> findSavedRecipes (Utente user) {
         List<Ricetta> ricette = new ArrayList<>();
-        String query = "SELECT * FROM ricettesalvate WHERE utente = ?";
-        try
-        {
+        String query = "SELECT * FROM ricettesalvate INNER JOIN ricette ON ricette.codice=ricettesalvate.ricetta WHERE utente = ?";
+        try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, user.getUserCode());
             ResultSet rs = st.executeQuery();
-            while (rs.next())
-            {
+            while (rs.next()) {
                 Ricetta ricetta = new RicetteProxy(conn);
                 ricetta.setCodice(rs.getInt("codice"));
                 ricetta.setNomeRicetta(rs.getString("nomericetta"));
-                System.out.println(rs.getString("nomericetta") + "ciaoooo");
                 ricetta.setCategoria(rs.getString("categoria"));
                 ricetta.setDescrizione(rs.getString("descrizione"));
                 ricetta.setIngredienti(rs.getString("listaingredienti"));
@@ -479,8 +475,7 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setTag2(rs.getString("tag2"));
                 ricette.add(ricetta);
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return ricette;
@@ -501,7 +496,6 @@ public class RicetteDAOPostgres implements RicettaDAO
                 Ricetta ricetta = new RicetteProxy(conn);
                 ricetta.setCodice(rs.getInt("codice"));
                 ricetta.setNomeRicetta(rs.getString("nomericetta"));
-                System.out.println(rs.getString("nomericetta") + "ciaoooo");
                 ricetta.setCategoria(rs.getString("categoria"));
                 ricetta.setDescrizione(rs.getString("descrizione"));
                 ricetta.setIngredienti(rs.getString("listaingredienti"));
