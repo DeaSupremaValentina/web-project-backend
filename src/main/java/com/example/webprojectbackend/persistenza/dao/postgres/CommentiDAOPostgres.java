@@ -1,7 +1,9 @@
 package com.example.webprojectbackend.persistenza.dao.postgres;
 
+import com.example.webprojectbackend.persistenza.DBManager;
 import com.example.webprojectbackend.persistenza.dao.CommentoDAO;
 import com.example.webprojectbackend.persistenza.model.Commento;
+import com.example.webprojectbackend.persistenza.model.Ricetta;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -73,6 +75,8 @@ public class CommentiDAOPostgres implements CommentoDAO {
             st.setString(2, commento.getUsername());
             st.setString(3, commento.getContenuto());
             st.executeUpdate();
+            //aggiungo il nuovo commento nella lista di commenti di Ricetta attuale
+            //Ricetta ricetta = DBManager.getInstance().getRicettaDAO().findByPrimaryKey(commento.getCodiceRicetta());
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
