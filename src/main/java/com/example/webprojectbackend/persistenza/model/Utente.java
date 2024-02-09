@@ -3,9 +3,9 @@ package com.example.webprojectbackend.persistenza.model;
 public class Utente {
     private static Utente instance = null;
     private static String userCode; //codice univoco dell'utente, lo dà Firebase
-    private String tipo; //admin o user
+    private static String tipo; //admin o user
 
-    private String email, nome;
+    private static String email, nome;
     public Utente() {}
 
     public Utente(String userCode, String tipo, String email, String nome) {
@@ -64,5 +64,14 @@ public class Utente {
         this.email = null;
         this.nome = null;
     }
+
+    public static void setInstance(Utente utente){
+        instance = utente;
+    }
+
+    public void setInstance(String userCode, String tipo, String email, String nome){
+        instance = new Utente(userCode, tipo, email, nome);
+    }
+
 
 }

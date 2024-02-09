@@ -16,7 +16,8 @@ public class LoginREST {
     Utente utente = Utente.getInstance();
     @PostMapping("/login")
     public void login(@RequestBody Utente utente){
-       this.utente = utente;
+        Utente.setInstance(utente);
+        this.utente = utente;
         System.out.println("la rest per login");
 
         if(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente.getUserCode()) == null){
@@ -33,7 +34,10 @@ public class LoginREST {
 
     @GetMapping("/tipoUtente")
     public String getTipoUtente(){
-        return DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente.getUserCode()).getTipo();
+        System.out.println("ciao" + Utente.getInstance().getUserCode() + Utente.getInstance().getTipo() );
+        String tipo = DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente.getUserCode()).getTipo();
+        System.out.println(tipo);
+        return tipo;
     }
 
    @PostMapping("/logout")
