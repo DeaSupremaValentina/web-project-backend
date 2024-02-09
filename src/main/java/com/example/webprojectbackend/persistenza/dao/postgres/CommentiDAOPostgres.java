@@ -76,7 +76,7 @@ public class CommentiDAOPostgres implements CommentoDAO {
             st.setString(3, commento.getContenuto());
             st.executeUpdate();
             //aggiungo il nuovo commento nella lista di commenti di Ricetta attuale
-            //Ricetta ricetta = DBManager.getInstance().getRicettaDAO().findByPrimaryKey(commento.getCodiceRicetta());
+            Ricetta ricetta = DBManager.getInstance().getRicettaDAO().findByPrimaryKey(commento.getCodiceRicetta());
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
