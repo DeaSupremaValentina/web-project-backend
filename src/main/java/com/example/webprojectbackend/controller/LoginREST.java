@@ -16,9 +16,10 @@ public class LoginREST {
     Utente utente = Utente.getInstance();
     @PostMapping("/login")
     public void login(@RequestBody Utente utente){
-        Utente.setInstance(utente);
+        System.out.println(utente.getEmail());
         this.utente = utente;
         System.out.println("la rest per login");
+        System.out.println(utente.getEmail());
 
         if(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente.getUserCode()) == null){
             System.out.println(utente.getEmail());
@@ -26,6 +27,12 @@ public class LoginREST {
         }else{
             this.utente.setUserCode(DBManager.getInstance().getUtenteDAO().getUtenteByEmail(utente.getEmail()).getUserCode());
         }
+        System.out.println(utente.getTipo());
+
+        if(Objects.equals(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente.getUserCode()).getTipo(), "admin")){
+            this.utente.setTipo("admin");
+        }
+
 
 
         System.out.println("è andato il login");
@@ -34,15 +41,14 @@ public class LoginREST {
 
     @GetMapping("/tipoUtente")
     public String getTipoUtente(){
-        System.out.println("ciao" + Utente.getInstance().getUserCode() + Utente.getInstance().getTipo() );
-        String tipo = DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente.getUserCode()).getTipo();
-        System.out.println(tipo);
-        return tipo;
+
+        return this.utente.getTipo();
     }
 
    @PostMapping("/logout")
     public void logout()
    {
+         System.out.println(utente);
          utente = null;
          Utente.getInstance().logout();
    }
