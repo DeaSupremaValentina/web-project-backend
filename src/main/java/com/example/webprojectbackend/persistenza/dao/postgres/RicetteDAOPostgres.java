@@ -392,8 +392,8 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setCosto(rs.getString("costo"));
                 ricetta.setAutore(rs.getString("publisher"));
                 ricetta.setPathImmagine(rs.getString("immagine"));
-                ricetta.setLinkSpotify(rs.getString("link_spotify"));
-                ricetta.setLinkYoutube(rs.getString("link_youtube"));
+                ricetta.setLinkSpotify(rs.getString("linkspotify"));
+                ricetta.setLinkYoutube(rs.getString("linkyoutube"));
                 ricetta.setTag1(rs.getString("tag1"));
                 ricetta.setTag2(rs.getString("tag2"));
                 ricette.add(ricetta);
