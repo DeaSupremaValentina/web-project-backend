@@ -47,14 +47,6 @@ public class LoginREST {
         return this.utente.getTipo();
     }
 
-   @PostMapping("/logout")
-    public void logout()
-   {
-         System.out.println(utente);
-         utente = null;
-         this.utente.logout();
-   }
-
 }
 
 
