@@ -29,9 +29,9 @@ public interface RicettaDAO {
     public List<Ricetta> findAllProposals(); //trova tutte le proposte
     public void deleteProposal(Ricetta recipe); //elimina una proposta
 
-    public void saveNewRecipe(int codiceRicetta); //salva una ricetta
+    public void saveNewRecipe(int codiceRicetta, Utente utente); //salva una ricetta
 
-    public void unsaveRecipe(int codiceRicetta); //rimuove una ricetta salvata
+    public void unsaveRecipe(int codiceRicetta, Utente utente); //rimuove una ricetta salvata
 
     //un moderatore può approvare o rifiutare una proposta. vedrà tutte le proposte quindi all'apertura della pagina dedicata
     //si dovrà fare una query che restituisca tutte le proposte, poi quando ne approva una si fa una query che salva la proposta

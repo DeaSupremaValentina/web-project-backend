@@ -81,12 +81,12 @@ public class RicetteREST {
 
     @PostMapping("/salvaRicetta") //l'utente può così salvare una ricetta tra i preferiti
     public void saveRicetta(@RequestBody int codiceRicetta){
-        DBManager.getInstance().getRicettaDAO().saveNewRecipe(codiceRicetta);
+        DBManager.getInstance().getRicettaDAO().saveNewRecipe(codiceRicetta, utente);
     }
 
     @PostMapping("/rimuoviRicetta") //l'utente può così rimuovere una ricetta tra i preferiti
     public void unsaveRicetta(@RequestBody int codiceRicetta){
-        DBManager.getInstance().getRicettaDAO().unsaveRecipe(codiceRicetta);
+        DBManager.getInstance().getRicettaDAO().unsaveRecipe(codiceRicetta, utente);
     }
 
     @GetMapping("/ricetteSalvate")
