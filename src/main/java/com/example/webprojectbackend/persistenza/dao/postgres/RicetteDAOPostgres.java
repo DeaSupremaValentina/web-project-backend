@@ -324,26 +324,29 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     @Override
     public void newProposal(Ricetta recipe) {
-    String query = "insert into daapprovare (nomericetta, categoria, descrizione, listaingredienti, procedimento, tempi, difficolta, npersone, costo, publisher, immagine, linkspotify, linkyoutube, tag1, tag2) values (?,? ?, ?, ?,?,?,?,?,?,?,?,?,?,?)";
+        String query = "insert into daapprovare (nomericetta, categoria, linkyoutube, linkspotify, listaingredienti, descrizione, npersone, tempi, tag1, tag2, immagine, procedimento, publisher, difficolta, costo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
         try {
+            System.out.println("sono nella query per proposta" + recipe.getNomeRicetta() +"\n");
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, recipe.getNomeRicetta());
             st.setString(2, recipe.getCategoria());
-            st.setString(3, recipe.getDescrizione());
-            st.setString(4, recipe.getIngredienti());
-            st.setString(5, recipe.getProcedimento());
-            st.setString(6, recipe.getTempoPreparazione());
-            st.setString(7, recipe.getDifficolta());
-            st.setString(8, recipe.getNumeroPersone());
-            st.setString(9, recipe.getCosto());
-            st.setString(10, recipe.getAutore());
-            // st.setString(11, recipe.getPathImmagine());
-            String imgBase64 = ImageConverter.getInstance().convertToData(recipe.getPathImmagine());
-            st.setString(11, imgBase64);
-            st.setString(12, recipe.getLinkSpotify());
-            st.setString(13, recipe.getLinkYoutube());
-            st.setString(14, recipe.getTag1());
-            st.setString(15, recipe.getTag2());
+            st.setString(3, recipe.getLinkYoutube());
+            st.setString(4, recipe.getLinkSpotify());
+            st.setString(5, recipe.getIngredienti());
+            st.setString(6, recipe.getDescrizione());
+            st.setString(7, recipe.getNumeroPersone());
+            st.setString(8, recipe.getTempoPreparazione());
+            st.setString(9, recipe.getTag1());
+            st.setString(10, recipe.getTag2());
+            st.setString(11, recipe.getPathImmagine());
+            st.setString(12, recipe.getProcedimento());
+            st.setString(13, recipe.getAutore());
+            st.setString(14, recipe.getDifficolta());
+            st.setString(15, recipe.getCosto());
+
+
+
             st.executeUpdate();
         }
         catch (Exception e) {
