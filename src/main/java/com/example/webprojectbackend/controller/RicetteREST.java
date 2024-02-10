@@ -115,6 +115,7 @@ public class RicetteREST {
     //      per approvare una proposta di ricetta
     @PostMapping("/approvaProposta")
     public void approveProposta(@RequestBody Ricetta ricetta){
+        System.out.println(ricetta.getNomeRicetta());
         System.out.println("nel rest per approvare la ricetta proposta");
         DBManager.getInstance().getRicettaDAO().save(ricetta);
         DBManager.getInstance().getRicettaDAO().deleteProposal(ricetta);

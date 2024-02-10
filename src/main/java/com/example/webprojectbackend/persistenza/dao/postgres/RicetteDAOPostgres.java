@@ -1,6 +1,7 @@
 package com.example.webprojectbackend.persistenza.dao.postgres;
 
 import com.example.webprojectbackend.persistenza.DBManager;
+import com.example.webprojectbackend.persistenza.IDBroker;
 import com.example.webprojectbackend.persistenza.ImageConverter;
 import com.example.webprojectbackend.persistenza.dao.RicettaDAO;
 import com.example.webprojectbackend.persistenza.model.Commento;
@@ -258,7 +259,7 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     @Override
     public void save(Ricetta recipe) {
-            String query = "insert into ricette (nomericetta, categoria, descrizione, listaingredienti, procedimento, tempi, difficolta, npersone, costo, publisher, immagine, link_spotify, link_youtube, tag1, tag2) values (?,? ?, ?, ?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "insert into ricette (nomericetta, categoria, descrizione, listaingredienti, procedimento, tempi, difficolta, npersone, costo, publisher, immagine, link_spotify, link_youtube, tag1, tag2, codice) values (?,? ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement st = conn.prepareStatement(query);
                 st.setString(1, recipe.getNomeRicetta());
@@ -278,6 +279,9 @@ public class RicetteDAOPostgres implements RicettaDAO
                 st.setString(13, recipe.getLinkYoutube());
                 st.setString(14, recipe.getTag1());
                 st.setString(15, recipe.getTag2());
+
+                int code = IDBroker.getRicetteId(conn);
+                st.setInt(16, code);
                 st.executeUpdate();
             }
             catch (Exception e) {
@@ -346,7 +350,6 @@ public class RicetteDAOPostgres implements RicettaDAO
             st.setString(15, recipe.getCosto());
 
 
-
             st.executeUpdate();
         }
         catch (Exception e) {
@@ -356,10 +359,10 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     @Override
     public void deleteProposal(Ricetta recipe) {
-        String query = "delete from daapprovare where codice = ?";
+        String query = "delete from daapprovare where nome = ?";
         try {
             PreparedStatement st = conn.prepareStatement(query);
-            st.setInt(1, recipe.getCodice());
+            st.setString(1, recipe.getNomeRicetta());
             st.executeUpdate();
         }
         catch (Exception e) {
