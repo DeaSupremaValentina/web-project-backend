@@ -90,7 +90,7 @@ public class RicetteREST {
     }
 
     @GetMapping("/ricetteSalvate")
-    public List<Ricetta> getRicetteSalvate(Utente utente){
+    public List<Ricetta> getRicetteSalvate(@RequestBody Utente utente){
         return DBManager.getInstance().getRicettaDAO().findSavedRecipes(utente);
     }
 

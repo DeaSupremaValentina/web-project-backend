@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @RestController
 public class LoginREST {
     Utente utente = new Utente();
+    List<Utente> listaUtenti = new ArrayList<>();
     @PostMapping("/login")
 
     public void login(@RequestBody Utente utente){
@@ -36,6 +39,8 @@ public class LoginREST {
         }
 
 
+        listaUtenti.add(utente);
+
 
         System.out.println("è andato il login");
 
@@ -46,6 +51,8 @@ public class LoginREST {
 
         return this.utente.getTipo();
     }
+
+
 
 }
 
