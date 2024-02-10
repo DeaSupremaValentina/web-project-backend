@@ -13,9 +13,11 @@ import java.util.Objects;
 
 @RestController
 public class LoginREST {
-    Utente utente = Utente.getInstance();
+    Utente utente = new Utente();
     @PostMapping("/login")
+
     public void login(@RequestBody Utente utente){
+
         System.out.println(utente.getEmail());
         this.utente = utente;
         System.out.println("la rest per login");
@@ -50,7 +52,7 @@ public class LoginREST {
    {
          System.out.println(utente);
          utente = null;
-         Utente.getInstance().logout();
+         this.utente.logout();
    }
 
 }
