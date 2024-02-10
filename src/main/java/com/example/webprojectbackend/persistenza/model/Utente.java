@@ -1,11 +1,10 @@
 package com.example.webprojectbackend.persistenza.model;
 
 public class Utente {
-    private static Utente instance = null;
-    private static String userCode; //codice univoco dell'utente, lo dà Firebase
-    private static String tipo; //admin o user
+    private String userCode; //codice univoco dell'utente, lo dà Firebase
+    private String tipo; //admin o user
+    private String email, nome;
 
-    private static String email, nome;
     public Utente() {}
 
     public Utente(String userCode, String tipo, String email, String nome) {
@@ -13,14 +12,6 @@ public class Utente {
         this.tipo = tipo;
         this.email = email;
         this.nome = nome;
-
-    }
-
-    public static Utente getInstance() {
-        if (instance == null) {
-            instance = new Utente();
-        }
-        return instance;
     }
 
     public String getUserCode() {
@@ -39,7 +30,6 @@ public class Utente {
         this.tipo = tipo;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -52,26 +42,14 @@ public class Utente {
         return nome;
     }
 
-
     public void setNome(String nome) {
         this.nome = nome;
     }
 
     public void logout(){
-        instance = null;
         this.userCode = null;
         this.tipo = null;
         this.email = null;
         this.nome = null;
     }
-
-    public static void setInstance(Utente utente){
-        instance = utente;
-    }
-
-    public void setInstance(String userCode, String tipo, String email, String nome){
-        instance = new Utente(userCode, tipo, email, nome);
-    }
-
-
 }

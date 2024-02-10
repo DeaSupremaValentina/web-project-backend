@@ -419,14 +419,14 @@ public class RicetteDAOPostgres implements RicettaDAO
     }
 
     @Override
-    public void saveNewRecipe(int codiceRicetta) //query per salvare una nuova ricetta
+    public void saveNewRecipe(int codiceRicetta, Utente utente) //query per salvare una nuova ricetta
     {
         String query = "insert into ricettesalvate (ricetta, utente) values (?,?)";
         try
         {
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, codiceRicetta);
-            st.setString(2, Utente.getInstance().getUserCode());
+            st.setString(2, utente.getUserCode());
             st.executeUpdate();
         }
         catch (Exception e) {
@@ -436,14 +436,14 @@ public class RicetteDAOPostgres implements RicettaDAO
     }
 
     @Override
-    public void unsaveRecipe(int codiceRicetta) //query per eliminare una ricetta salvata
+    public void unsaveRecipe(int codiceRicetta, Utente utente) //query per eliminare una ricetta salvata
     {
         String query = "delete from ricettesalvate where ricetta = ? and utente = ?";
         try
         {
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, codiceRicetta);
-            st.setString(2, Utente.getInstance().getUserCode());
+            st.setString(2, utente.getUserCode());
             st.executeUpdate();
         }
         catch (Exception e) {

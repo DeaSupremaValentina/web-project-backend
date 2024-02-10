@@ -73,9 +73,8 @@ public class UtentiDAOPostgres implements UtenteDAO {
     }
 
     @Override
-    public Utente getUtenteByEmail(String email) {
+    public Utente getUtenteByEmail(String email, Utente utente) {
         String query = "SELECT * FROM utente WHERE mail = ?";
-        Utente utente = Utente.getInstance();
         try
         {
             PreparedStatement st = conn.prepareStatement(query);
