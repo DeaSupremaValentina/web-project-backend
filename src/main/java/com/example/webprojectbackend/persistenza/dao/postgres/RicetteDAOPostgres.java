@@ -380,7 +380,7 @@ public class RicetteDAOPostgres implements RicettaDAO
             while (rs.next())
             {
                 Ricetta ricetta = new Ricetta();
-                ricetta.setCodice(rs.getInt("codice"));
+                //ricetta.setCodice(rs.getInt("codice"));
                 ricetta.setNomeRicetta(rs.getString("nomericetta"));
                 ricetta.setCategoria(rs.getString("categoria"));
                 ricetta.setDescrizione(rs.getString("descrizione"));
