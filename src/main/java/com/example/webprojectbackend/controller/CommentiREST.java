@@ -20,7 +20,7 @@ public class CommentiREST
     }
 
     @PostMapping("/salvaCommento")
-    public void saveCommento(@RequestBody String json, String commentoNuovo, String user) {
+    public void saveCommento(@RequestBody String json, String comm, String user) {
         @SuppressWarnings("deprecation")
         JsonElement jsonElement = new JsonParser().parse(json);
         int codiceRicetta = jsonElement.getAsJsonObject().get("id").getAsInt();
