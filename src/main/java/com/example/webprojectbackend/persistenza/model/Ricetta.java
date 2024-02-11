@@ -58,7 +58,7 @@ public class Ricetta {
         return codice;
     }
 
-    public void setCodice(int codice) {
+    public void setCodice(Integer codice) {
         this.codice = codice;
     }
 

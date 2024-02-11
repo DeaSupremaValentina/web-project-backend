@@ -258,34 +258,28 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     @Override
     public void save(Ricetta recipe) {
-            String query = "insert into ricette (nomericetta, categoria, descrizione, listaingredienti, procedimento, tempi, difficolta, npersone, costo, publisher, immagine, link_spotify, link_youtube, tag1, tag2, codice) values (?,? ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?)";
-            try {
-                PreparedStatement st = conn.prepareStatement(query);
-                st.setString(1, recipe.getNomeRicetta());
-                st.setString(2, recipe.getCategoria());
-                st.setString(3, recipe.getDescrizione());
-                st.setString(4, recipe.getIngredienti());
-                st.setString(5, recipe.getProcedimento());
-                st.setString(6, recipe.getTempoPreparazione());
-                st.setString(7, recipe.getDifficolta());
-                st.setString(8, recipe.getNumeroPersone());
-                st.setString(9, recipe.getCosto());
-                st.setString(10, recipe.getAutore());
-                // st.setString(11, recipe.getPathImmagine());
-                String imgBase64 = ImageConverter.getInstance().convertToData(recipe.getPathImmagine());
-                st.setString(11, imgBase64);
-                st.setString(12, recipe.getLinkSpotify());
-                st.setString(13, recipe.getLinkYoutube());
-                st.setString(14, recipe.getTag1());
-                st.setString(15, recipe.getTag2());
-
-                int code = IDBroker.getRicetteId(conn);
-                st.setInt(16, code);
-                st.executeUpdate();
-            }
-            catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+        String query = "INSERT INTO public.ricette (nomericetta, categoria, publisher, link_youtube, link_spotify, listaingredienti, descrizione, npersone, tempi, tag1, tag2, immagine, procedimento, difficolta, costo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, recipe.getNomeRicetta());
+            st.setString(2, recipe.getCategoria());
+            st.setString(3, recipe.getAutore());
+            st.setString(4, recipe.getLinkYoutube());
+            st.setString(5, recipe.getLinkSpotify());
+            st.setString(6, recipe.getIngredienti());
+            st.setString(7, recipe.getDescrizione());
+            st.setString(8, recipe.getNumeroPersone());
+            st.setString(9, recipe.getTempoPreparazione());
+            st.setString(10, recipe.getTag1());
+            st.setString(11, recipe.getTag2());
+            st.setString(12, recipe.getPathImmagine());
+            st.setString(13, recipe.getProcedimento());
+            st.setString(14, recipe.getDifficolta());
+            st.setString(15, recipe.getCosto());
+            st.executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -358,7 +352,7 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     @Override
     public void deleteProposal(Ricetta recipe) {
-        String query = "delete from daapprovare where nome = ?";
+        String query = "delete from daapprovare where nomericetta = ?";
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, recipe.getNomeRicetta());
