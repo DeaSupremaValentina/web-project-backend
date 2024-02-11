@@ -422,14 +422,14 @@ public class RicetteDAOPostgres implements RicettaDAO
     }
 
     @Override
-    public void saveNewRecipe(int codiceRicetta, Utente utente) //query per salvare una nuova ricetta
+    public void saveNewRecipe(int codiceRicetta, String codiceUtente) //query per salvare una nuova ricetta
     {
         String query = "insert into ricettesalvate (ricetta, utente) values (?,?)";
         try
         {
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, codiceRicetta);
-            st.setString(2, utente.getUserCode());
+            st.setString(2, codiceUtente);
             st.executeUpdate();
         }
         catch (Exception e) {
@@ -439,14 +439,14 @@ public class RicetteDAOPostgres implements RicettaDAO
     }
 
     @Override
-    public void unsaveRecipe(int codiceRicetta, Utente utente) //query per eliminare una ricetta salvata
+    public void unsaveRecipe(int codiceRicetta, String codiceUtente) //query per eliminare una ricetta salvata
     {
         String query = "delete from ricettesalvate where ricetta = ? and utente = ?";
         try
         {
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, codiceRicetta);
-            st.setString(2, utente.getUserCode());
+            st.setString(2, codiceUtente);
             st.executeUpdate();
         }
         catch (Exception e) {
@@ -455,12 +455,12 @@ public class RicetteDAOPostgres implements RicettaDAO
 
     }
 
-    public List<Ricetta> findSavedRecipes (Utente user) {
+    public List<Ricetta> findSavedRecipes (String codiceUtente) {
         List<Ricetta> ricette = new ArrayList<>();
         String query = "SELECT * FROM ricettesalvate INNER JOIN ricette ON ricette.codice=ricettesalvate.ricetta WHERE utente = ?";
         try {
             PreparedStatement st = conn.prepareStatement(query);
-            st.setString(1, user.getUserCode());
+            st.setString(1, codiceUtente);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Ricetta ricetta = new RicetteProxy(conn);
