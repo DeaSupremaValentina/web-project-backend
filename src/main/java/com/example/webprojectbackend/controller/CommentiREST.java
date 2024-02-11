@@ -21,17 +21,16 @@ public class CommentiREST
 
     @PostMapping("/salvaCommento")
     public void saveCommento(@RequestBody String json, String comm, String user) {
+        System.out.println(json);
         @SuppressWarnings("deprecation")
         JsonElement jsonElement = new JsonParser().parse(json);
         int codiceRicetta = jsonElement.getAsJsonObject().get("id").getAsInt();
-        String commentoFromjson = jsonElement.getAsJsonObject().get("commentoNuovo").getAsString();
+        String commentoFromjson = jsonElement.getAsJsonObject().get("nuovoCommento").getAsString();
+        String userId = jsonElement.getAsJsonObject().get("user").getAsString();
         Commento commento = new Commento();
-        System.out.println("codice ricetta: " + codiceRicetta);
         commento.setCodiceRicetta(codiceRicetta);
         commento.setContenuto(commentoFromjson);
-        commento.setUsername(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(user).getNome());
+        commento.setUsername(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(userId).getNome());
         DBManager.getInstance().getCommentoDAO().save(commento);
     }
-
-
 }
