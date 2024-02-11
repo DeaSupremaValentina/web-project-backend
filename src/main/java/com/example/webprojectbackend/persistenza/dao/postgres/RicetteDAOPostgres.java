@@ -34,7 +34,6 @@ public class RicetteDAOPostgres implements RicettaDAO
                 Ricetta ricetta = new Ricetta();
                 ricetta.setCodice(rs.getInt("codice"));
                 ricetta.setNomeRicetta(rs.getString("nomericetta"));
-                System.out.println(rs.getString("nomericetta"));
                 ricetta.setCategoria(rs.getString("categoria"));
                 ricetta.setDescrizione(rs.getString("descrizione"));
                 ricetta.setIngredienti(rs.getString("listaingredienti"));
@@ -62,7 +61,6 @@ public class RicetteDAOPostgres implements RicettaDAO
         Ricetta ricetta = null;
         List<Ricetta> ricette = new ArrayList<Ricetta>();
         String query = "select * from ricette where nomericetta = ?";
-        System.out.println(nome);
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, nome);
@@ -204,10 +202,6 @@ public class RicetteDAOPostgres implements RicettaDAO
                 ricetta.setTag1(rs.getString("tag1"));
                 ricetta.setTag2(rs.getString("tag2"));
                 List<Commento> commenti = DBManager.getInstance().getCommentoDAO().findByCodiceRicetta(rs.getInt("codice"));
-                for(int i=0; i<commenti.size(); i++)
-                {
-                    System.out.println(commenti.get(i).getContenuto());
-                }
                 ricetta.setCommenti(commenti);
             }
         }
@@ -324,7 +318,6 @@ public class RicetteDAOPostgres implements RicettaDAO
         String query = "insert into daapprovare (nomericetta, categoria, linkyoutube, linkspotify, listaingredienti, descrizione, npersone, tempi, tag1, tag2, immagine, procedimento, publisher, difficolta, costo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
-            System.out.println("sono nella query per proposta" + recipe.getNomeRicetta() +"\n");
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, recipe.getNomeRicetta());
             st.setString(2, recipe.getCategoria());
@@ -526,7 +519,6 @@ public class RicetteDAOPostgres implements RicettaDAO
         List<Ricetta> ricette = new ArrayList<Ricetta>();
         try
         {
-            System.out.println("in allLazy");
             String query = "SELECT * FROM ricette";
             PreparedStatement st = conn.prepareStatement(query);
             ResultSet rs = st.executeQuery();

@@ -21,18 +21,13 @@ public class LoginREST {
 
     public void login(@RequestBody Utente utente){
 
-        System.out.println(utente.getEmail());
         this.utente = utente;
-        System.out.println("la rest per login");
-        System.out.println(utente.getEmail());
 
         if(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente.getUserCode()) == null){
-            System.out.println(utente.getEmail());
             DBManager.getInstance().getUtenteDAO().save(utente);
         }else{
             this.utente.setUserCode(DBManager.getInstance().getUtenteDAO().getUtenteByEmail(utente.getEmail()).getUserCode());
         }
-        System.out.println(utente.getTipo());
 
         if(Objects.equals(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente.getUserCode()).getTipo(), "admin")){
             this.utente.setTipo("admin");
@@ -40,9 +35,6 @@ public class LoginREST {
 
 
         listaUtenti.add(utente);
-
-
-        System.out.println("è andato il login");
 
     }
 
