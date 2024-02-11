@@ -4,6 +4,7 @@ import com.example.webprojectbackend.persistenza.model.Commento;
 import com.example.webprojectbackend.persistenza.model.Ricetta;
 import com.example.webprojectbackend.persistenza.model.Utente;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface RicettaDAO {
@@ -21,6 +22,9 @@ public interface RicettaDAO {
     public void save(Ricetta recipe); //crea una ricetta
 
     public boolean update(Ricetta recipe); //modifica una ricetta
+
+    public Ricetta findProposalByName(String nome) throws SQLException;
+
     public void delete(Ricetta recipe); //elimina una ricetta
 
 

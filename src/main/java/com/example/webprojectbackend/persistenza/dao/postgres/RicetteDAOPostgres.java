@@ -6,7 +6,6 @@ import com.example.webprojectbackend.persistenza.ImageConverter;
 import com.example.webprojectbackend.persistenza.dao.RicettaDAO;
 import com.example.webprojectbackend.persistenza.model.Commento;
 import com.example.webprojectbackend.persistenza.model.Ricetta;
-import com.example.webprojectbackend.persistenza.model.Utente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -406,6 +405,46 @@ public class RicetteDAOPostgres implements RicettaDAO
         }
         return ricette;
     }
+
+    @Override
+    public Ricetta findProposalByName(String nome) throws SQLException {
+        Ricetta ricetta = null;
+        String query = "select * from daapprovare where nomericetta = ?";
+        try {
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, nome);
+
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                ricetta = new Ricetta();
+                ricetta.setNomeRicetta(rs.getString("nomericetta"));
+                ricetta.setCategoria(rs.getString("categoria"));
+                ricetta.setDescrizione(rs.getString("descrizione"));
+                ricetta.setIngredienti(rs.getString("listaingredienti"));
+                ricetta.setProcedimento(rs.getString("procedimento"));
+                ricetta.setTempoPreparazione(rs.getString("tempi"));
+                ricetta.setDifficolta(rs.getString("difficolta"));
+                ricetta.setNumeroPersone(rs.getString("npersone"));
+                ricetta.setCosto(rs.getString("costo"));
+                ricetta.setAutore(rs.getString("publisher"));
+                ricetta.setPathImmagine(rs.getString("immagine"));
+                ricetta.setLinkSpotify(rs.getString("linkspotify"));
+                ricetta.setLinkYoutube(rs.getString("linkyoutube"));
+                ricetta.setTag1(rs.getString("tag1"));
+                ricetta.setTag2(rs.getString("tag2"));
+
+            }
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return ricetta;
+
+    }
+
+
 
     @Override
     public void delete(Ricetta recipe)
