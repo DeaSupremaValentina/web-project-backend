@@ -127,7 +127,7 @@ public class RicetteREST {
     }
 
     @GetMapping("/ricetteScritteDaUtente")
-    public List<Ricetta> getRicetteScritteDaUtente(String codiceUtente){
-        return DBManager.getInstance().getRicettaDAO().findByUsername(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(codiceUtente).getNome());
+    public List<Ricetta> getRicetteScritteDaUtente(String utente){
+        return DBManager.getInstance().getRicettaDAO().findByUsername(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente).getNome());
     }
 }
