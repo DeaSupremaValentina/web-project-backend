@@ -27,7 +27,6 @@ public class ContattiDAOPostgres implements ContattoDAO {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                System.out.println(rs.getString("valore"));
                 stringhe.add(rs.getString("valore"));
             }
         } catch (SQLException e) {

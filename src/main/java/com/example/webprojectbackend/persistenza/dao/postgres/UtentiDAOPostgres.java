@@ -19,19 +19,16 @@ public class UtentiDAOPostgres implements UtenteDAO {
     @Override
     public void save(Utente utente) {
         String query = "INSERT INTO utente (username, nome, mail, tipo) VALUES (?, ?, ?, ?)";
-        System.out.println("nella query");
         try {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, utente.getUserCode());
             st.setString(2, utente.getNome());
             st.setString(3, utente.getEmail());
             st.setString(4, utente.getTipo());
-            System.out.println("ciao utente" + utente.getUserCode() + utente.getNome());
             st.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        System.out.println("dopo try");
     }
 
     @Override
