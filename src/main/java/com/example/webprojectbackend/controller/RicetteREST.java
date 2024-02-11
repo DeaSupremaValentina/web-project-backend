@@ -72,7 +72,7 @@ public class RicetteREST {
     @GetMapping("/tutteLeRicetteProposte")
     public List<Ricetta> getAllRicetteProposte()
     {
-        System.out.println("nell'endpoint");
+        System.out.println("nell'endpoint");;
         return DBManager.getInstance().getRicettaDAO().findAllProposals();
     }
 
@@ -128,6 +128,8 @@ public class RicetteREST {
 
     @GetMapping("/ricetteScritteDaUtente")
     public List<Ricetta> getRicetteScritteDaUtente(String utente){
+        
+        System.out.println("nel rest per prendere le ricette scritte da un utente, " + utente);
         return DBManager.getInstance().getRicettaDAO().findByUsername(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente).getNome());
     }
 }

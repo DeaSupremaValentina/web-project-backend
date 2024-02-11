@@ -2,10 +2,7 @@ package com.example.webprojectbackend.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.webprojectbackend.persistenza.DBManager;
 import com.example.webprojectbackend.persistenza.model.Commento;
@@ -23,15 +20,16 @@ public class CommentiREST
     }
 
     @PostMapping("/salvaCommento")
-    public void saveCommento(@RequestBody String json, String comm, String codiceUtente) {
+    public void saveCommento(@RequestParam String json, @RequestParam String commentoNuovo, @RequestParam String user) {
         @SuppressWarnings("deprecation")
         JsonElement jsonElement = new JsonParser().parse(json);
         int codiceRicetta = jsonElement.getAsJsonObject().get("id").getAsInt();
-        String commentoFromjson = jsonElement.getAsJsonObject().get("comm").getAsString();
+        String commentoFromjson = jsonElement.getAsJsonObject().get("commentoNuovo").getAsString();
         Commento commento = new Commento();
+        System.out.println("codice ricetta: " + codiceRicetta);
         commento.setCodiceRicetta(codiceRicetta);
         commento.setContenuto(commentoFromjson);
-        commento.setUsername(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(codiceUtente).getNome());
+        commento.setUsername(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(user).getNome());
         DBManager.getInstance().getCommentoDAO().save(commento);
     }
 
