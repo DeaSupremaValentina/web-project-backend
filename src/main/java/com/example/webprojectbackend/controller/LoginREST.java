@@ -3,11 +3,7 @@ package com.example.webprojectbackend.controller;
 import com.example.webprojectbackend.persistenza.DBManager;
 import com.example.webprojectbackend.persistenza.model.Ricetta;
 import com.example.webprojectbackend.persistenza.model.Utente;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,9 +35,9 @@ public class LoginREST {
     }
 
     @GetMapping("/tipoUtente")
-    public String getTipoUtente(){
+    public String getTipoUtente(@RequestParam String utente){
 
-        return this.utente.getTipo();
+        return DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente).getTipo();
     }
 
 
