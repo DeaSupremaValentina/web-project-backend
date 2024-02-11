@@ -131,7 +131,7 @@ public class RicetteREST {
     public List<Ricetta> getRicetteScritteDaUtente(String utente){
         
         System.out.println("nel rest per prendere le ricette scritte da un utente, " + utente);
-        return DBManager.getInstance().getRicettaDAO().findByUsername(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente).getNome());
+        return DBManager.getInstance().getRicettaDAO().findByUsername(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente).getEmail());
     }
 
     @GetMapping("/ricettaDaApprovare/{nome}")
