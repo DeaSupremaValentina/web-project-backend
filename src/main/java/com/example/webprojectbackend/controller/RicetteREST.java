@@ -6,6 +6,7 @@ import com.example.webprojectbackend.persistenza.model.RicettaRequest;
 import com.example.webprojectbackend.persistenza.model.Utente;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -131,5 +132,10 @@ public class RicetteREST {
         
         System.out.println("nel rest per prendere le ricette scritte da un utente, " + utente);
         return DBManager.getInstance().getRicettaDAO().findByUsername(DBManager.getInstance().getUtenteDAO().getUtenteByUsername(utente).getNome());
+    }
+
+    @GetMapping("/ricettaDaApprovare/{nome}")
+    public Ricetta getRicettaDaApprovareByName(@PathVariable String nome) throws SQLException {
+        return DBManager.getInstance().getRicettaDAO().findProposalByName(nome);
     }
 }
